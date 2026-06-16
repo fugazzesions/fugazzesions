@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { Inter, Caveat } from "next/font/google";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
 
 const inter = Inter({
@@ -30,11 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${inter.variable} ${caveat.variable}`}>
-      <body className="min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
-      </body>
+      <body className="min-h-screen flex flex-col">{children}</body>
     </html>
   );
 }
