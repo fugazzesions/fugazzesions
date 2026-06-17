@@ -16,9 +16,40 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "Fugazzesions — Pizza, Patín y Punto",
+  title: {
+    default: "Fugazzesions — Pizza, Patín y Punto",
+    template: "%s · Fugazzesions",
+  },
   description:
     "Comunidad de patín en Argentina. Sesiones, clases de quad e inline, y la tradición de cerrar todo con pizza.",
+  keywords: ['patín', 'quad', 'inline', 'rollers', 'fugazzesions', 'argentina', 'comunidad'],
+  authors: [{ name: 'Fugazzesions' }],
+  openGraph: {
+    title: 'Fugazzesions — Pizza, Patín y Punto',
+    description:
+      'Comunidad de patín en Argentina. Sesiones, clases de quad e inline, y la tradición de cerrar todo con pizza.',
+    type: 'website',
+    locale: 'es_AR',
+    siteName: 'Fugazzesions',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Fugazzesions',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Fugazzesions — Pizza, Patín y Punto',
+    description: 'Comunidad de patín en Argentina.',
+    images: ['/og-image.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

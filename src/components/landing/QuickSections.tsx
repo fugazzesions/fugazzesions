@@ -45,7 +45,7 @@ const variantArrow = {
 
 export function QuickSections() {
   return (
-    <section className="px-8 py-2 grid grid-cols-3 gap-3.5 mb-9">
+    <section className="px-5 sm:px-8 py-2 grid grid-cols-3 gap-3.5 mb-9">
       {sections.map((s) => (
         <Link
           key={s.href}

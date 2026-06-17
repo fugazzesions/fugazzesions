@@ -17,7 +17,7 @@ export function DisciplineTabs({ quadClasses, inlineClasses }: DisciplineTabsPro
   return (
     <>
       {/* Toggle */}
-      <div className="px-8 mb-2">
+      <div className="px-5 sm:px-8 mb-2">
         <div className="inline-flex border-[2.5px] border-ink rounded-md overflow-hidden">
           <DiscButton
             label="Quad"
@@ -35,7 +35,7 @@ export function DisciplineTabs({ quadClasses, inlineClasses }: DisciplineTabsPro
       </div>
 
       {/* Section head */}
-      <div className="px-8 pt-7 pb-3.5 flex items-center gap-3">
+      <div className="px-5 sm:px-8 pt-7 pb-3.5 flex items-center gap-3">
         <h2 className="font-display text-3xl">
           Niveles disponibles · {active === 'quad' ? 'Quad' : 'Inline'}
         </h2>
@@ -44,13 +44,13 @@ export function DisciplineTabs({ quadClasses, inlineClasses }: DisciplineTabsPro
 
       {/* Grid */}
       {classes.length > 0 ? (
-        <div className="px-8 grid grid-cols-3 gap-4">
+        <div className="px-5 sm:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {classes.map((c) => (
             <ClassCard key={c.id} classData={c} />
           ))}
         </div>
       ) : (
-        <div className="px-8 py-12 text-center text-ink-muted">
+        <div className="px-5 sm:px-8 py-12 text-center text-ink-muted">
           <p className="font-display text-2xl">No hay clases activas en este momento</p>
           <p className="text-sm mt-1">Volvé a visitarnos pronto.</p>
         </div>

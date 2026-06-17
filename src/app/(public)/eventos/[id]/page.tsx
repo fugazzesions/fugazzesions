@@ -39,7 +39,7 @@ export default async function EventDetailPage({ params }: PageProps) {
 
   return (
     <>
-      <div className="px-8 pt-6 text-xs text-ink-light tracking-wide">
+      <div className="px-5 sm:px-8 pt-6 text-xs text-ink-light tracking-wide">
         <Link href="/eventos" className="hover:text-ink inline-flex items-center gap-1">
           <ArrowLeft size={11} /> Eventos
         </Link>
@@ -47,14 +47,14 @@ export default async function EventDetailPage({ params }: PageProps) {
         <span className="text-ink font-medium">{event.title}</span>
       </div>
 
-      <div className="px-8 pt-4 pb-6 flex items-end justify-between gap-4 flex-wrap">
+      <div className="px-5 sm:px-8 pt-4 pb-6 flex items-end justify-between gap-4 flex-wrap">
         <h1 className="font-display text-[64px] leading-none m-0">{event.title}</h1>
         <Tag variant={status.variant} className="text-[10px] px-3 py-1.5 self-start mt-1.5">
           {status.isPast ? 'Evento finalizado' : (event.is_paid ? 'Entradas a la venta' : 'Inscripción abierta')}
         </Tag>
       </div>
 
-      <div className="mx-8 relative aspect-video bg-paper-warm fz-border rounded-md overflow-hidden">
+      <div className="mx-5 sm:mx-8 relative aspect-video bg-paper-warm fz-border rounded-md overflow-hidden">
         {event.image_url ? (
           <Image
             src={event.image_url}
@@ -71,7 +71,7 @@ export default async function EventDetailPage({ params }: PageProps) {
         )}
       </div>
 
-      <div className="px-8 pt-7 pb-2 grid grid-cols-[1fr_280px] gap-6">
+      <div className="px-5 sm:px-8 pt-7 pb-2 grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-6">
         <div>
           <h2 className="font-display text-3xl mb-3">
             {status.isPast ? 'Cómo estuvo' : 'Sobre la sesión'}

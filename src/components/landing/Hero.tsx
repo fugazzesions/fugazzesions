@@ -6,7 +6,7 @@ interface HeroProps {
 
 export function Hero({ imageSrc }: HeroProps) {
   return (
-    <section className="px-8 pt-6 pb-4">
+    <section className="px-5 sm:px-8 pt-6 pb-4">
       <div className="relative w-full aspect-video bg-paper-soft fz-border rounded-md overflow-hidden">
         {imageSrc ? (
           <Image

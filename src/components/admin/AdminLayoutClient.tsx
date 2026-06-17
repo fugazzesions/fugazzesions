@@ -12,13 +12,12 @@ export function AdminLayoutClient({ userEmail, children }: AdminLayoutClientProp
   const pathname = usePathname();
   const isLoginPage = pathname === '/admin/login';
 
-  // El login no usa sidebar
   if (isLoginPage) {
     return <>{children}</>;
   }
 
   return (
-    <div className="min-h-screen grid grid-cols-[240px_1fr]">
+    <div className="min-h-screen lg:grid lg:grid-cols-[240px_1fr]">
       <AdminSidebar userEmail={userEmail ?? ''} />
       <main className="overflow-x-hidden">{children}</main>
     </div>

@@ -26,7 +26,7 @@ export default async function AdminDashboard() {
   const firstName = user?.email?.split('@')[0] ?? 'amigo';
 
   return (
-    <div className="p-8 pb-12">
+    <div className="p-5 sm:p-8pb-12">
       {/* Topbar */}
       <div className="flex items-center justify-between mb-6">
         <h1 className="font-display text-5xl leading-none m-0 capitalize">
@@ -38,7 +38,7 @@ export default async function AdminDashboard() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-4 gap-3.5 mb-8">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 mb-8">
         <StatCard
           icon={<Calendar size={22} />}
           number={upcoming.length}

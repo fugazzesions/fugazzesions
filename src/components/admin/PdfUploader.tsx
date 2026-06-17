@@ -76,7 +76,7 @@ export function PdfUploader({ currentUrl, onChange }: PdfUploaderProps) {
       <div
         className={`
           relative border-[2.5px] border-dashed border-ink rounded-md
-          ${filename ? 'bg-paper-soft p-4' : 'bg-paper-warm p-8 cursor-pointer hover:bg-paper-warm/70'}
+          ${filename ? 'bg-paper-soft p-4' : 'bg-paper-warm p-5 sm:p-8cursor-pointer hover:bg-paper-warm/70'}
           transition-colors
         `}
         onClick={() => !filename && !uploading && inputRef.current?.click()}

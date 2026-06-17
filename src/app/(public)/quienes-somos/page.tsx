@@ -38,7 +38,7 @@ export default function QuienesSomosPage() {
       />
 
       {/* MANIFIESTO */}
-      <div className="px-8 pt-7 grid grid-cols-2 gap-8">
+      <div className="px-5 sm:px-8 pt-7 grid grid-cols-1 sm:grid-cols-2 gap-8">
         <div>
           <h2 className="font-display text-4xl leading-none mb-3.5">
             {manifestoContent.headline.main}{' '}
@@ -71,12 +71,12 @@ export default function QuienesSomosPage() {
       </div>
 
       {/* VALORES */}
-      <div className="px-8 pt-9 pb-3.5 flex items-center gap-3">
+      <div className="px-5 sm:px-8 pt-9 pb-3.5 flex items-center gap-3">
         <h2 className="font-display text-3xl">Lo que nos mueve</h2>
         <div className="flex-1 fz-divider" />
       </div>
 
-      <div className="px-8 grid grid-cols-3 gap-4">
+      <div className="px-5 sm:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {valuesContent.map((v) => {
           const Icon = iconMap[v.icon];
           const styles = valueVariantStyles[v.variant];
@@ -96,12 +96,12 @@ export default function QuienesSomosPage() {
       </div>
 
       {/* EQUIPO */}
-      <div className="px-8 pt-9 pb-3.5 flex items-center gap-3">
+      <div className="px-5 sm:px-8 pt-9 pb-3.5 flex items-center gap-3">
         <h2 className="font-display text-3xl">Los que sostienen el proyecto</h2>
         <div className="flex-1 fz-divider" />
       </div>
 
-      <div className="px-8 grid grid-cols-4 gap-6 mt-3.5 items-stretch">
+      <div className="px-5 sm:px-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mt-3.5 items-stretch">
         {foundersContent.map((founder, i) => (
           <Polaroid
             key={i}
@@ -136,7 +136,7 @@ export default function QuienesSomosPage() {
       </div>
 
       {/* CTA STRIP */}
-      <div className="mx-8 mt-9 mb-7 bg-ink text-paper p-7 rounded-md flex items-center justify-between gap-4 flex-wrap">
+      <div className="mx-5 sm:mx-8 mt-9 mb-7 bg-ink text-paper p-7 rounded-md flex items-center justify-between gap-4 flex-wrap">
         <div>
           <h3 className="font-display text-3xl leading-none mb-1">
             ¿Querés <span className="text-red">patinar con nosotros</span>?

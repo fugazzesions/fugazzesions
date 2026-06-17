@@ -12,7 +12,7 @@ export async function UpcomingPreview() {
   }
 
   return (
-    <section className="px-8 pt-10 pb-10 border-t-[1.5px] border-ink">
+    <section className="px-5 sm:px-8 pt-10 pb-10 border-t-[1.5px] border-ink">
       {/* Header */}
       <div className="flex items-center gap-3 mb-5">
         <h2 className="font-display text-3xl">Próximas sesiones</h2>
@@ -26,7 +26,7 @@ export async function UpcomingPreview() {
       </div>
 
       {/* Grid de cards */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {events.map((event) => (
           <EventCard
             key={event.id}

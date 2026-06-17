@@ -13,7 +13,7 @@ export default async function AdminRecursosPage() {
   ]);
 
   return (
-    <div className="p-8 pb-12">
+    <div className="p-5 sm:p-8pb-12">
       <div className="flex items-end justify-between mb-7 gap-4 flex-wrap">
         <div>
           <h1 className="font-display text-5xl leading-none mb-1">Recursos</h1>

@@ -49,7 +49,7 @@ export default async function EventosPage() {
 function UpcomingGrid({ events }: { events: Awaited<ReturnType<typeof getAllUpcomingEvents>> }) {
   if (events.length === 0) {
     return (
-      <div className="px-8 py-12 text-center text-ink-muted">
+      <div className="px-5 sm:px-8 py-12 text-center text-ink-muted">
         <p className="font-display text-2xl">No hay eventos próximos</p>
         <p className="text-sm mt-1">Volvé a visitarnos pronto.</p>
       </div>
@@ -57,7 +57,7 @@ function UpcomingGrid({ events }: { events: Awaited<ReturnType<typeof getAllUpco
   }
 
   return (
-    <div className="px-8 pt-7 pb-2 grid grid-cols-3 gap-4">
+    <div className="px-5 sm:px-8 pt-7 pb-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {events.map((event) => (
         <EventCard
           key={event.id}
@@ -77,14 +77,14 @@ function UpcomingGrid({ events }: { events: Awaited<ReturnType<typeof getAllUpco
 function PastList({ events }: { events: Awaited<ReturnType<typeof getPastEvents>> }) {
   if (events.length === 0) {
     return (
-      <div className="px-8 py-12 text-center text-ink-muted">
+      <div className="px-5 sm:px-8 py-12 text-center text-ink-muted">
         <p className="font-display text-2xl">Sin eventos en el archivo</p>
       </div>
     );
   }
 
   return (
-    <div className="px-8 pt-7 pb-9 flex flex-col gap-2.5">
+    <div className="px-5 sm:px-8 pt-7 pb-9 flex flex-col gap-2.5">
       {events.map((event) => {
         const { day, year } = formatArchiveDate(event.date);
         const meta = [

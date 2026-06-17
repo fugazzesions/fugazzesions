@@ -21,7 +21,7 @@ export default async function AdminEventosPage() {
   const past = allEvents.filter((e) => e.date < today && e.published);
 
   return (
-    <div className="p-8 pb-12">
+    <div className="p-5 sm:p-8pb-12">
       {/* Topbar */}
       <div className="flex items-end justify-between mb-7 gap-4 flex-wrap">
         <div>

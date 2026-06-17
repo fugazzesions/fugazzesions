@@ -22,7 +22,7 @@ export default async function RecursosPage() {
         subtitle="Guías, materiales y descargas"
       />
 
-      <p className="px-8 pt-3 pb-6 max-w-2xl text-sm leading-relaxed text-ink-soft">
+      <p className="px-5 sm:px-8 pt-3 pb-6 max-w-2xl text-sm leading-relaxed text-ink-soft">
         PDFs descargables sobre patín, técnica y equipamiento. Material pensado para
         ayudarte a arrancar y mejorar, en tu propio tiempo y a tu propio ritmo.
       </p>
@@ -30,7 +30,7 @@ export default async function RecursosPage() {
       <ResourcesView categories={categories} resources={resources} />
 
       {/* Bloque sugerir recurso */}
-      <div className="mx-8 my-6 bg-paper-soft border-[2.5px] border-dashed border-ink rounded-md p-6 flex items-center justify-between gap-4 flex-wrap">
+      <div className="mx-5 sm:mx-8 my-6 bg-paper-soft border-[2.5px] border-dashed border-ink rounded-md p-6 flex items-center justify-between gap-4 flex-wrap">
         <div className="flex-1 min-w-60">
           <h3 className="font-display text-2xl leading-none mb-1">
             ¿Falta algún recurso?

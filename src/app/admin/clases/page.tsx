@@ -23,7 +23,7 @@ export default async function AdminClasesPage() {
   const inline = allClasses.filter((c) => c.discipline === 'inline');
 
   return (
-    <div className="p-8 pb-12">
+    <div className="p-5 sm:p-8pb-12">
       {/* Topbar */}
       <div className="flex items-end justify-between mb-7 gap-4 flex-wrap">
         <div>
@@ -77,7 +77,7 @@ function DisciplineSection({
         </span>
       </div>
 
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {classes.map((c) => (
           <ClassAdminCard key={c.id} classData={c} />
         ))}

@@ -114,7 +114,7 @@ export function EventGalleryManager({ eventId, photos }: EventGalleryManagerProp
             </span>
           </div>
 
-          <div className="grid grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
             {photos.map((photo) => (
               <div
                 key={photo.id}

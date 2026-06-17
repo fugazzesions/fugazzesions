@@ -80,7 +80,7 @@ export function ClassForm({ classData }: ClassFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="p-8 pb-12">
+    <form onSubmit={handleSubmit} className="p-5 sm:p-8pb-12">
       <div className="flex items-start justify-between mb-7 gap-4 flex-wrap">
         <div>
           <div className="text-xs text-ink-light mb-1">
@@ -114,7 +114,7 @@ export function ClassForm({ classData }: ClassFormProps) {
         </div>
       )}
 
-      <div className="grid grid-cols-[1fr_320px] gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-1 lg:grid-cols-[1fr_320px] gap-5">
         {/* Columna izquierda */}
         <div className="space-y-5">
           {/* Datos básicos */}
@@ -123,7 +123,7 @@ export function ClassForm({ classData }: ClassFormProps) {
               <label className="block text-[10px] uppercase tracking-[0.15em] font-bold text-ink-soft mb-1.5">
                 Disciplina <span className="text-red ml-1">*</span>
               </label>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 <DisciplineOption
                   label="Quad"
                   active={discipline === 'quad'}
@@ -137,7 +137,7 @@ export function ClassForm({ classData }: ClassFormProps) {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-3.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
               <Input
                 label="Nivel (número)"
                 type="number"
@@ -165,7 +165,7 @@ export function ClassForm({ classData }: ClassFormProps) {
 
           {/* Horarios y lugar */}
           <FormCard title="Horarios y lugar">
-            <div className="grid grid-cols-2 gap-3.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
               <Input
                 label="Días"
                 value={scheduleDays}

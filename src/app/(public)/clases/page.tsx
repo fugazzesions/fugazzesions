@@ -20,7 +20,7 @@ export default async function ClasesPage() {
         subtitle="Aprendé a patinar con nosotros"
       />
 
-      <p className="px-8 py-3.5 pb-7 max-w-2xl text-sm leading-relaxed text-ink-soft">
+      <p className="px-5 sm:px-8 py-3.5 pb-7 max-w-2xl text-sm leading-relaxed text-ink-soft">
         Enseñamos quad e inline a todos los niveles. Si nunca te subiste a unos patines
         o si querés pulir tus trucos en park, hay una clase para vos. Las clases son
         grupales, con cupos limitados, y se cierran con pizza siempre que se pueda.

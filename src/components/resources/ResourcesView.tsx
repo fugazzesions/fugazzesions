@@ -20,7 +20,7 @@ export function ResourcesView({ categories, resources }: ResourcesViewProps) {
   return (
     <>
       {/* Filtros */}
-      <div className="px-8 pb-6 flex gap-2 flex-wrap">
+      <div className="px-5 sm:px-8 pb-6 flex gap-2 flex-wrap">
         <FilterPill
           label="Todos"
           count={resources.length}
@@ -52,7 +52,7 @@ export function ResourcesView({ categories, resources }: ResourcesViewProps) {
         return (
           <div key={cat.id} className="mb-9">
             {/* Header de categoría */}
-            <div className="px-8 pt-2 pb-3.5 flex items-center gap-3">
+            <div className="px-5 sm:px-8 pt-2 pb-3.5 flex items-center gap-3">
               <h2 className="font-display text-3xl">{cat.name}</h2>
               <div className="flex-1 fz-divider" />
               <span className="text-[11px] tracking-[0.15em] uppercase text-ink-muted">
@@ -61,7 +61,7 @@ export function ResourcesView({ categories, resources }: ResourcesViewProps) {
             </div>
 
             {/* Grid de recursos */}
-            <div className="px-8 grid grid-cols-3 gap-4">
+            <div className="px-5 sm:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {catResources.map((resource) => (
                 <ResourceCard key={resource.id} resource={resource} />
               ))}
@@ -74,7 +74,7 @@ export function ResourcesView({ categories, resources }: ResourcesViewProps) {
       {visibleCategories.every(
         (cat) => resources.filter((r) => r.category_id === cat.id).length === 0
       ) && (
-        <div className="px-8 py-12 text-center text-ink-muted">
+        <div className="px-5 sm:px-8 py-12 text-center text-ink-muted">
           <p className="font-display text-2xl">No hay recursos en esta categoría</p>
         </div>
       )}

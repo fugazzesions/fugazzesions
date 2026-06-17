@@ -29,7 +29,7 @@ export default async function EditarEventoPage({ params }: PageProps) {
 
       {/* Manager de galería: solo para eventos pasados */}
       {isPast && (
-        <div className="px-8 pb-12 -mt-4">
+        <div className="px-5 sm:px-8 pb-12 -mt-4">
           <div className="fz-card p-5">
             <div className="flex items-baseline gap-2.5 mb-4 pb-3 border-b border-dashed border-ink/20">
               <h3 className="font-display text-2xl m-0 leading-none">

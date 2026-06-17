@@ -94,7 +94,7 @@ export function ResourceForm({ resource, categories }: ResourceFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="p-8 pb-12">
+    <form onSubmit={handleSubmit} className="p-5 sm:p-8pb-12">
       <div className="flex items-start justify-between mb-7 gap-4 flex-wrap">
         <div>
           <div className="text-xs text-ink-light mb-1">
@@ -133,7 +133,7 @@ export function ResourceForm({ resource, categories }: ResourceFormProps) {
         </div>
       )}
 
-      <div className="grid grid-cols-[1fr_320px] gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-1 lg:grid-cols-[1fr_320px] gap-5">
         {/* Columna izquierda */}
         <div className="space-y-5">
           <FormCard title="Archivo PDF">

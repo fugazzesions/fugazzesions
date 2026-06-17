@@ -12,7 +12,7 @@ export function EventGallery({ photos }: EventGalleryProps) {
   }
 
   return (
-    <section className="px-8 pt-7 pb-9">
+    <section className="px-5 sm:px-8 pt-7 pb-9">
       <div className="flex items-center gap-3 mb-5">
         <h2 className="font-display text-3xl">Galería</h2>
         <div className="flex-1 fz-divider" />
@@ -21,7 +21,7 @@ export function EventGallery({ photos }: EventGalleryProps) {
         </span>
       </div>
 
-      <div className="grid grid-cols-4 gap-4 py-2">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 py-2">
         {photos.map((photo, i) => (
           <Polaroid key={photo.id} src={photo.image_url} index={i} />
         ))}
@@ -62,13 +62,13 @@ function Polaroid({ src, index }: { src: string; index: number }) {
 
 function EmptyGallery() {
   return (
-    <section className="px-8 pt-7 pb-9">
+    <section className="px-5 sm:px-8 pt-7 pb-9">
       <div className="flex items-center gap-3 mb-5">
         <h2 className="font-display text-3xl">Galería</h2>
         <div className="flex-1 fz-divider" />
       </div>
 
-      <div className="bg-paper-soft border-[2.5px] border-dashed border-ink rounded-md py-12 px-8 text-center">
+      <div className="bg-paper-soft border-[2.5px] border-dashed border-ink rounded-md py-12 px-5 sm:px-8 text-center">
         <CameraOff size={44} className="inline-block text-ink/35 mb-3" />
         <p className="font-display text-2xl text-ink">
           Próximamente publicaremos fotos de este evento

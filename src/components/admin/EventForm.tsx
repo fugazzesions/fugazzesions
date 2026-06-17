@@ -76,7 +76,7 @@ export function EventForm({ event }: EventFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="p-8 pb-12">
+    <form onSubmit={handleSubmit} className="p-5 sm:p-8pb-12">
       {/* Topbar */}
       <div className="flex items-start justify-between mb-7 gap-4 flex-wrap">
         <div>
@@ -117,7 +117,7 @@ export function EventForm({ event }: EventFormProps) {
       )}
 
       {/* Grid 2 columnas */}
-      <div className="grid grid-cols-[1fr_320px] gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-1 lg:grid-cols-[1fr_320px] gap-5">
         {/* Columna izquierda */}
         <div className="space-y-5">
           {/* Datos básicos */}
@@ -139,7 +139,7 @@ export function EventForm({ event }: EventFormProps) {
               rows={5}
             />
 
-            <div className="grid grid-cols-2 gap-3.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
               <Input
                 label="Fecha"
                 type="date"
@@ -192,7 +192,7 @@ export function EventForm({ event }: EventFormProps) {
             />
 
             {isPaid && (
-              <div className="grid grid-cols-2 gap-3.5 mt-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mt-3">
                 <Input
                   label="Precio"
                   type="number"
