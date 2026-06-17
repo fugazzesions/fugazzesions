@@ -59,3 +59,23 @@ export async function getResources(): Promise<DbResource[]> {
 
   return data ?? [];
 }
+
+/**
+ * Obtiene un recurso específico por su ID.
+ */
+export async function getResourceById(id: string): Promise<DbResource | null> {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from('resources')
+    .select('*')
+    .eq('id', id)
+    .single();
+
+  if (error) {
+    console.error('Error fetching resource:', error);
+    return null;
+  }
+
+  return data;
+}
