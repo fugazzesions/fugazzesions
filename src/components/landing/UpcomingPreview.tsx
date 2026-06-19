@@ -12,7 +12,7 @@ export async function UpcomingPreview() {
   }
 
   return (
-    <section className="px-5 sm:px-8 pt-10 pb-10 border-t-[1.5px] border-ink">
+    <section className="px-5 sm:px-8 pt-10 pb-10">
       {/* Header */}
       <div className="flex items-center gap-3 mb-5">
         <h2 className="font-display text-3xl">Próximas sesiones</h2>

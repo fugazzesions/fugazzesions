@@ -6,28 +6,19 @@ interface HeroProps {
 
 export function Hero({ imageSrc }: HeroProps) {
   return (
-    <section className="px-5 sm:px-8 pt-6 pb-4">
-      <div className="relative w-full aspect-video bg-paper-soft fz-border rounded-md overflow-hidden">
-        {imageSrc ? (
-          <Image
-            src={imageSrc}
-            alt="Fugazzesions"
-            fill
-            priority
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 1200px"
-          />
-        ) : (
-          <PlaceholderHero />
-        )}
-      </div>
-
-      {/* Lema debajo del banner */}
-      <div className="font-display text-2xl text-center mt-4">
-        Pizza <span className="text-red mx-2">·</span>
-        Patín <span className="text-green mx-2">·</span>
-        Punto
-      </div>
+    <section className="relative w-full aspect-video bg-paper-soft overflow-hidden">
+      {imageSrc ? (
+        <Image
+          src={imageSrc}
+          alt="Fugazzesions"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+      ) : (
+        <PlaceholderHero />
+      )}
     </section>
   );
 }
