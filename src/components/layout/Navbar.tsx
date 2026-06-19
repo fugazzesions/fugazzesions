@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -16,6 +16,11 @@ const navLinks = [
 export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+
+  // Cerrar menú automáticamente al cambiar de ruta
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   return (
     <>
@@ -93,8 +98,8 @@ export function Navbar() {
                       text-lg font-medium lowercase tracking-wide
                       border-2
                       ${isActive
-                        ? 'bg-ink text-paper border-ink'
-                        : 'border-ink/15 text-ink hover:border-ink'
+                        ? 'bg-paper-soft text-red border-red'
+                        : 'bg-paper text-ink border-ink/15 hover:border-ink'
                       }
                     `}
                   >
