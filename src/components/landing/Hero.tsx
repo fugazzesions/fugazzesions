@@ -23,11 +23,11 @@ export function Hero({ imageSrc }: HeroProps) {
       </div>
 
       {/* Lema debajo del banner */}
-      <p className="font-display text-2xl text-center mt-4">
+      <div className="font-display text-2xl text-center mt-4">
         Pizza <span className="text-red mx-2">·</span>
         Patín <span className="text-green mx-2">·</span>
         Punto
-      </p>
+      </div>
     </section>
   );
 }
