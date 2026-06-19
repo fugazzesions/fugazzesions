@@ -16,9 +16,9 @@ export function DisciplineTabs({ quadClasses, inlineClasses }: DisciplineTabsPro
 
   return (
     <>
-      {/* Toggle */}
-      <div className="px-5 sm:px-8 mb-2">
-        <div className="inline-flex border-[2.5px] border-ink rounded-md overflow-hidden">
+      {/* Tabs estilo solapa (como Eventos) */}
+      <div className="pt-7">
+        <div className="flex gap-2.5 border-b-2 border-ink mx-4">
           <DiscButton
             label="Quad"
             count={quadClasses.length}
@@ -74,19 +74,16 @@ function DiscButton({
     <button
       onClick={onClick}
       className={`
-        px-5 py-3 text-xs font-bold uppercase tracking-[0.12em]
+        px-4 py-2.5 border-2 border-ink border-b-0 rounded-t-md
+        text-xs font-bold uppercase tracking-[0.1em]
+        relative top-0.5
         flex items-center gap-2
-        ${active ? 'bg-ink text-paper' : 'bg-transparent text-ink hover:bg-ink/5'}
+        ${active ? 'bg-paper text-ink' : 'bg-ink text-paper'}
       `}
     >
       {label}
-      <span
-        className={`
-          text-[10px] px-1.5 py-0.5 rounded-full
-          ${active ? 'bg-paper/15' : 'bg-ink/10'}
-        `}
-      >
-        {count}
+      <span className="text-[10px] opacity-60">
+        {count.toString().padStart(2, '0')}
       </span>
     </button>
   );

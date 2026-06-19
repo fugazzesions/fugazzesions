@@ -30,9 +30,12 @@ export function Tabs({ tabs, defaultTab }: TabsProps) {
               onClick={() => setActiveTab(tab.id)}
               className={`
                 px-4 py-2.5 border-2 border-ink border-b-0 rounded-t-md
-                text-xs font-bold uppercase tracking-widest
+                text-xs font-bold uppercase tracking-[0.1em]
                 relative top-0.5
-                ${isActive ? 'bg-ink text-paper' : 'bg-paper text-ink'}
+                ${isActive
+                  ? 'bg-paper text-ink'
+                  : 'bg-ink text-paper'
+                }
               `}
             >
               {tab.label}

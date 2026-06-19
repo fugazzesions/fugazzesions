@@ -19,26 +19,28 @@ export function ResourcesView({ categories, resources }: ResourcesViewProps) {
 
   return (
     <>
-      {/* Filtros */}
-      <div className="px-5 sm:px-8 pb-6 flex gap-2 flex-wrap">
-        <FilterPill
-          label="Todos"
-          count={resources.length}
-          active={activeFilter === 'all'}
-          onClick={() => setActiveFilter('all')}
-        />
-        {categories.map((cat) => {
-          const count = resources.filter((r) => r.category_id === cat.id).length;
-          return (
-            <FilterPill
-              key={cat.id}
-              label={cat.name}
-              count={count}
-              active={activeFilter === cat.slug}
-              onClick={() => setActiveFilter(cat.slug)}
-            />
-          );
-        })}
+      {/* Tabs estilo solapa (como Eventos) */}
+      <div className="pb-6">
+        <div className="flex gap-2.5 border-b-2 border-ink mx-4 flex-wrap">
+          <FilterPill
+            label="Todos"
+            count={resources.length}
+            active={activeFilter === 'all'}
+            onClick={() => setActiveFilter('all')}
+          />
+          {categories.map((cat) => {
+            const count = resources.filter((r) => r.category_id === cat.id).length;
+            return (
+              <FilterPill
+                key={cat.id}
+                label={cat.name}
+                count={count}
+                active={activeFilter === cat.slug}
+                onClick={() => setActiveFilter(cat.slug)}
+              />
+            );
+          })}
+        </div>
       </div>
 
       {/* Listado agrupado por categoría */}
@@ -51,7 +53,6 @@ export function ResourcesView({ categories, resources }: ResourcesViewProps) {
 
         return (
           <div key={cat.id} className="mb-9">
-            {/* Header de categoría */}
             <div className="px-5 sm:px-8 pt-2 pb-3.5 flex items-center gap-3">
               <h2 className="font-display text-3xl">{cat.name}</h2>
               <div className="flex-1 fz-divider" />
@@ -60,7 +61,6 @@ export function ResourcesView({ categories, resources }: ResourcesViewProps) {
               </span>
             </div>
 
-            {/* Grid de recursos */}
             <div className="px-5 sm:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {catResources.map((resource) => (
                 <ResourceCard key={resource.id} resource={resource} />
@@ -70,7 +70,6 @@ export function ResourcesView({ categories, resources }: ResourcesViewProps) {
         );
       })}
 
-      {/* Empty state */}
       {visibleCategories.every(
         (cat) => resources.filter((r) => r.category_id === cat.id).length === 0
       ) && (
@@ -97,20 +96,15 @@ function FilterPill({
     <button
       onClick={onClick}
       className={`
-        px-4 py-2 border-2 border-ink rounded-full
-        text-[11px] font-bold uppercase tracking-[0.12em]
-        inline-flex items-center gap-2
-        transition-colors
-        ${active ? 'bg-ink text-paper' : 'bg-transparent text-ink hover:bg-ink/5'}
+        px-4 py-2.5 border-2 border-ink border-b-0 rounded-t-md
+        text-xs font-bold uppercase tracking-[0.1em]
+        relative top-0.5
+        flex items-center gap-2
+        ${active ? 'bg-paper text-ink' : 'bg-ink text-paper'}
       `}
     >
-      <span>{label}</span>
-      <span
-        className={`
-          text-[10px] px-1.5 py-0.5 rounded-full
-          ${active ? 'bg-paper/15' : 'bg-ink/10'}
-        `}
-      >
+      {label}
+      <span className="text-[10px] opacity-60">
         {count.toString().padStart(2, '0')}
       </span>
     </button>
