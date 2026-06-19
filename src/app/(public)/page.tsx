@@ -5,7 +5,7 @@ import { UpcomingPreview } from '@/components/landing/UpcomingPreview';
 export default function Home() {
   return (
     <>
-      <Hero />
+      <Hero imageSrc="/banner-hero.png" />
       <QuickSections />
       <UpcomingPreview />
     </>
