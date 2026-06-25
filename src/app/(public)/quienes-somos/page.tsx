@@ -34,7 +34,7 @@ export default function QuienesSomosPage() {
     <>
       <PageHeader
         title="Quiénes somos"
-        subtitle="La gente, la idea y la pizza"
+        subtitle="Detrás del proyecto"
       />
 
       {/* MANIFIESTO */}
@@ -42,7 +42,6 @@ export default function QuienesSomosPage() {
         <div>
           <h2 className="font-display text-4xl leading-none mb-3.5">
             {manifestoContent.headline.main}{' '}
-            <span className="text-red">{manifestoContent.headline.accent}</span>
           </h2>
           {manifestoContent.paragraphs.map((para, i) => (
             <p
