@@ -40,7 +40,7 @@ export default function QuienesSomosPage() {
       {/* MANIFIESTO */}
       <div className="px-5 sm:px-8 pt-7 grid grid-cols-1 sm:grid-cols-2 gap-8">
         <div>
-          <h2 className="font-serif text-4xl leading-tight mb-4 italic">
+          <h2 className="font-serif text-4xl leading-tight mb-2 italic">
             {manifestoContent.headline.main}{' '}
           </h2>
           {manifestoContent.paragraphs.map((para, i) => (
