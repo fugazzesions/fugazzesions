@@ -54,22 +54,22 @@ export default async function EventDetailPage({ params }: PageProps) {
         </Tag>
       </div>
 
-      <div className="mx-5 sm:mx-8 relative aspect-video bg-paper-warm fz-border rounded-md overflow-hidden">
-        {event.image_url ? (
-          <Image
-            src={event.image_url}
-            alt={event.title}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 1200px"
-            priority
-          />
-        ) : (
-          <div className="absolute inset-0 flex items-center justify-center text-ink/25 text-5xl">
-            ⊕
-          </div>
-        )}
+      {event.image_url ? (
+      <div className="mx-5 sm:mx-8 relative max-h-150 flex justify-center bg-paper-warm fz-border rounded-md overflow-hidden">
+        <Image
+          src={event.image_url}
+          alt={event.title}
+          width={1200}
+          height={1500}
+          className="w-auto h-auto max-h-150 object-contain"
+          priority
+        />
       </div>
+      ) : (
+        <div className="mx-5 sm:mx-8 relative aspect-video bg-paper-warm fz-border rounded-md overflow-hidden flex items-center justify-center text-ink/25 text-5xl">
+          ⊕
+        </div>
+      )}
 
       <div className="px-5 sm:px-8 pt-7 pb-2 grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-6">
         <div>
