@@ -60,88 +60,97 @@ export default async function EventDetailPage({ params }: PageProps) {
         </Tag>
       </div>
 
-      {/* Banner (flyer) */}
-      {event.image_url ? (
-        <div className="px-5 sm:px-8 flex justify-center">
-          <div className="relative fz-border rounded-md overflow-hidden max-w-md w-full">
-            <Image
-              src={event.image_url}
-              alt={event.title}
-              width={1200}
-              height={1500}
-              className="w-full h-auto"
-              priority
-            />
-          </div>
-        </div>
-      ) : (
-        <div className="mx-5 sm:mx-8 relative aspect-video bg-paper-warm fz-border rounded-md overflow-hidden flex items-center justify-center text-ink/25 text-5xl">
-          ⊕
-        </div>
-      )}
+      {/* Banner + info al costado (desktop) / apilado (mobile) */}
+            <div className="px-5 sm:px-8 grid grid-cols-1 lg:grid-cols-[minmax(0,440px)_1fr] gap-8 items-start">
 
-      {/* "Sobre la sesión" / "Cómo estuvo" */}
-      <div className="px-5 sm:px-8 pt-10 pb-6 max-w-3xl">
-        <h2 className="font-display text-3xl mb-3">
-          {status.isPast ? 'Cómo estuvo' : 'Sobre la sesión'}
-        </h2>
-        {event.description && (
-          <div className="text-base leading-relaxed text-ink-soft space-y-3">
-            {event.description.split('\n\n').map((para, i) => (
-              <p key={i}>{para}</p>
-            ))}
-          </div>
-        )}
-      </div>
+              {/* Columna izquierda: banner */}
+              {event.image_url ? (
+                <div className="relative fz-border rounded-md overflow-hidden">
+                  <Image
+                    src={event.image_url}
+                    alt={event.title}
+                    width={1200}
+                    height={1500}
+                    className="w-full h-auto"
+                    priority
+                  />
+                </div>
+              ) : (
+                <div className="relative aspect-video bg-paper-warm fz-border rounded-md overflow-hidden flex items-center justify-center text-ink/25 text-5xl">
+                  ⊕
+                </div>
+              )}
 
-      {/* Cuadro de info horizontal */}
-      <div className="px-5 sm:px-8 pb-8">
-        <div className="fz-card p-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <InfoBlock icon={<Calendar size={20} />} label="Fecha">
-              <span className="font-display text-xl font-bold leading-tight">
-                {formatLongDate(event.date)}
-              </span>
-            </InfoBlock>
+              {/* Columna derecha: descripción + info */}
+              <div className="space-y-6">
 
-            <InfoBlock icon={<Clock size={20} />} label="Hora">
-              <span className="text-base font-semibold">{formatEventTime(event.time)}</span>
-            </InfoBlock>
+                {/* Sobre la sesión / Cómo estuvo */}
+                <div>
+                  <h2 className="font-display text-3xl mb-3">
+                    {status.isPast ? 'Cómo estuvo' : 'Sobre la sesión'}
+                  </h2>
+                  {event.description && (
+                    <div className="text-base leading-relaxed text-ink-soft space-y-3">
+                      {event.description.split('\n\n').map((para, i) => (
+                        <p key={i}>{para}</p>
+                      ))}
+                    </div>
+                  )}
+                </div>
 
-            {event.location_name && (
-              <InfoBlock icon={<MapPin size={20} />} label="Ubicación">
-                <span className="text-base font-semibold">{event.location_name}</span>
-                {event.address && (
-                  <span className="block text-xs text-ink-muted mt-0.5">{event.address}</span>
-                )}
-              </InfoBlock>
-            )}
+                {/* Cuadro de info */}
+                <div className="fz-card p-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <InfoBlock icon={<Calendar size={20} />} label="Fecha">
+                      <span className="font-display text-xl font-bold leading-tight">
+                        {formatLongDate(event.date)}
+                      </span>
+                    </InfoBlock>
 
-            {!status.isPast && event.is_paid && event.price && (
-              <InfoBlock icon={<Ticket size={20} />} label="Entrada">
-                <span className="font-display text-xl font-bold text-red">
-                  {formatPrice(event.price)}
-                </span>
-              </InfoBlock>
-            )}
-          </div>
+                    <InfoBlock icon={<Clock size={20} />} label="Hora">
+                      <span className="text-base font-semibold">{formatEventTime(event.time)}</span>
+                    </InfoBlock>
 
-          {/* CTA comprar entrada */}
-          {!status.isPast && event.ticket_url && (
-            <div className="mt-6 pt-6 border-t border-dashed border-ink/20 flex justify-center">
-              
-              <a href={event.ticket_url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button variant="primary" className="px-8">
-                  Comprar entrada <ExternalLink size={14} />
-                </Button>
-              </a>
+                    {event.location_name && (
+                      <InfoBlock icon={<MapPin size={20} />} label="Ubicación">
+                        <span className="text-base font-semibold">{event.location_name}</span>
+                        {event.address && (
+                          <span className="block text-xs text-ink-muted mt-0.5">{event.address}</span>
+                        )}
+                      </InfoBlock>
+                    )}
+
+                    {!status.isPast && event.is_paid && event.price && (
+                      <InfoBlock icon={<Ticket size={20} />} label="Entrada">
+                        <span className="font-display text-xl font-bold text-red">
+                          {formatPrice(event.price)}
+                        </span>
+                      </InfoBlock>
+                    )}
+                  </div>
+
+                  {/* CTA */}
+                  {!status.isPast && event.ticket_url && (
+                    <div className="mt-6 pt-6 border-t border-dashed border-ink/20">
+                      
+                      <a  href={event.ticket_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block"
+                      >
+                        <Button variant="primary" className="w-full">
+                          Comprar entrada <ExternalLink size={14} />
+                        </Button>
+                      </a>
+                    </div>
+                  )}
+                </div>
+
+              </div>
             </div>
-          )}
-        </div>
-      </div>
+
+            {/* Espaciado antes de galería */}
+            <div className="pb-8"></div>
 
       {/* Galería para eventos pasados */}
       {status.isPast && <EventGallery photos={photos} />}
