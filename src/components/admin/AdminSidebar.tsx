@@ -7,6 +7,7 @@ import {
   LayoutDashboard,
   CalendarDays,
   School,
+  Users,
   FileText,
   ExternalLink,
   LogOut,
@@ -24,6 +25,7 @@ const navItems = [
   { href: '/admin/eventos', label: 'Eventos', icon: CalendarDays },
   { href: '/admin/clases', label: 'Clases', icon: School },
   { href: '/admin/recursos', label: 'Recursos', icon: FileText },
+  { href: '/admin/quienes-somos', label: 'Quiénes somos', icon: Users },
 ];
 
 export function AdminSidebar({ userEmail }: AdminSidebarProps) {

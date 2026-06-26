@@ -1,11 +1,9 @@
 import Link from 'next/link';
-import { Flame, Pizza, Asterisk, type LucideIcon } from 'lucide-react';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { Polaroid } from '@/components/ui/Polaroid';
-import { Button } from '@/components/ui/Button';
+import { AboutCarousel } from '@/components/about/AboutCarousel';
+import { getAboutPhotos } from '@/lib/queries/aboutPhotos';
 import {
-  manifestoContent,
-  valuesContent,
   foundersContent,
   collaboratorsContent,
 } from '@/content/quienes-somos';
@@ -15,21 +13,11 @@ export const metadata = {
   description: 'La comunidad, los fundadores y los valores de Fugazzesions.',
 };
 
-const iconMap: Record<string, LucideIcon> = {
-  Flame,
-  Pizza,
-  Asterisk,
-};
-
-const valueVariantStyles = {
-  default: { iconClass: 'text-ink' },
-  red: { iconClass: 'text-red' },
-  green: { iconClass: 'text-green' },
-};
-
 const polaroidRotations = ['left', 'right', 'slight-left'] as const;
 
-export default function QuienesSomosPage() {
+export default async function QuienesSomosPage() {
+  const aboutPhotos = await getAboutPhotos();
+
   return (
     <>
       <PageHeader
@@ -37,61 +25,25 @@ export default function QuienesSomosPage() {
         subtitle="Detrás del proyecto"
       />
 
-      {/* MANIFIESTO */}
-      <div className="px-5 sm:px-8 pt-7 grid grid-cols-1 sm:grid-cols-2 gap-8">
-        <div>
-          <h2 className="font-serif text-4xl leading-tight mb-2 italic">
-            {manifestoContent.headline.main}{' '}
-          </h2>
-          {manifestoContent.paragraphs.map((para, i) => (
-            <p
-              key={i}
-              className="text-sm leading-relaxed text-ink-soft mb-3.5 [&_strong]:bg-ink [&_strong]:text-paper [&_strong]:px-1.5 [&_strong]:font-medium"
-              dangerouslySetInnerHTML={{ __html: para }}
-            />
-          ))}
-        </div>
-
-        {/* Quote box */}
-        <div className="relative bg-ink text-paper p-7 rounded-md flex flex-col justify-center">
-          <span
-            className="absolute -top-2.5 left-5 font-display text-[100px] leading-none text-red"
-            aria-hidden
-          >
-            &ldquo;
-          </span>
-          <div className="font-display text-3xl leading-tight mb-4 relative z-10">
-            {manifestoContent.quote.text}
-          </div>
-          <div className="text-[10px] uppercase tracking-[0.2em] text-paper/50">
-            — {manifestoContent.quote.sig}
-          </div>
-        </div>
-      </div>
-
-      {/* VALORES */}
+      {/* SOBRE EL PROYECTO + CARRUSEL */}
       <div className="px-5 sm:px-8 pt-9 pb-3.5 flex items-center gap-3">
-        <h2 className="font-display text-3xl">Lo que nos mueve</h2>
+        <h2 className="font-display text-3xl">Sobre el proyecto</h2>
         <div className="flex-1 fz-divider" />
       </div>
 
-      <div className="px-5 sm:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {valuesContent.map((v) => {
-          const Icon = iconMap[v.icon];
-          const styles = valueVariantStyles[v.variant];
-          return (
-            <div key={v.num} className="fz-card p-5">
-              <div className="font-display text-base text-ink/40 mb-1.5">{v.num}</div>
-              {Icon && (
-                <Icon size={30} className={`mb-3 ${styles.iconClass}`} />
-              )}
-              <div className="text-base font-bold uppercase tracking-wider mb-2">
-                {v.title}
-              </div>
-              <p className="text-[13px] leading-relaxed text-ink-soft">{v.text}</p>
-            </div>
-          );
-        })}
+      <div className="px-5 sm:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div className="space-y-4 text-base leading-relaxed text-ink-soft">
+          <p>
+            Fugazzesions es un proyecto autogestivo organizado por patinadores para patinadores.
+          </p>
+          <p>
+            Nuestra idea es simple: aportar a la escena del patín con eventos y clases para todos los niveles, con el fin de dar nuestro granito de arena para el progreso del deporte.
+          </p>
+        </div>
+
+        <div className="max-w-md mx-auto w-full lg:mx-0">
+          <AboutCarousel photos={aboutPhotos} />
+        </div>
       </div>
 
       {/* EQUIPO */}
@@ -112,7 +64,7 @@ export default function QuienesSomosPage() {
 
         {/* Bloque colaboradores */}
         <div
-          className="bg-ink text-paper border border-ink rounded-sm p-4 relative flex flex-col justify-center transition-transform duration-150 hover:rotate-0 hover:-translate-y-1 hover:z-10 rotate-[1.2deg]"
+          className="bg-ink text-paper border border-ink rounded-sm p-4 relative flex flex-col justify-center transition-transform duration-150 hover:rotate-0 hover:-translate-y-1 hover:z-10 rotate-1"
         >
           <div
             className="absolute -top-2.5 left-1/2 w-12 h-4 border border-black/20"
@@ -121,7 +73,7 @@ export default function QuienesSomosPage() {
               transform: 'translateX(-50%) rotate(4deg)',
             }}
           />
-          <div className="font-display text-[26px] leading-tight mb-2.5">
+          <div className="font-display text-2xl leading-tight mb-2.5">
             + {collaboratorsContent.title.replace(collaboratorsContent.accent, '')}
             <span className="text-red">{collaboratorsContent.accent}</span>
           </div>
@@ -151,7 +103,7 @@ export default function QuienesSomosPage() {
             </button>
           </Link>
           <Link href="/eventos">
-            <button className="px-4 py-3 bg-transparent border-2 border-paper text-paper text-[11px] font-bold uppercase tracking-[0.15em] rounded-md hover:-translate-x-0.5 hover:translate-y-0.5 hover:shadow-[4px_4px_0_var(--color-paper)] transition-all">
+            <button className="px-4 py-3 bg-transparent border-2 border-paper text-paper text-[11px] font-bold uppercase tracking-[0.15em] rounded-md hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0_var(--color-paper)] transition-all">
               Próximos eventos
             </button>
           </Link>
