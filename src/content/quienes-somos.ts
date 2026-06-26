@@ -54,15 +54,15 @@ export const valuesContent: Array<{
 export const foundersContent = [
   {
     name: 'Martin Troncoso',
-    role: 'Fundador',
+    role: 'Fundador de Plano Brand',
   },
   {
     name: 'Francisco Villasuso',
-    role: 'Fundador',
+    role: 'Fundador de Sauzal Haus',
   },
   {
     name: 'Lucas Majorana',
-    role: 'Fundador',
+    role: 'Fundador de Majorani',
   },
 ];
 

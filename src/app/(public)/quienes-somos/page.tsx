@@ -93,7 +93,7 @@ export default async function QuienesSomosPage() {
             ¿Querés <span className="text-red">patinar con nosotros</span>?
           </h3>
           <p className="m-0 text-xs tracking-wide text-paper/65">
-            Sumate a una clase, a un evento, o simplemente vení a rodar
+            Sumate a una clase, a un evento, o simplemente vení a patinar!
           </p>
         </div>
         <div className="flex gap-2.5">
