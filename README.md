@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Fugazzesions — portfolio
 
-## Getting Started
+Sitio de una sola página (sin nav) para mostrar el proyecto Fugazzesions:
+mapa 3D interactivo por edición, fotos, y marcas que apoyan el proyecto.
 
-First, run the development server:
+## Correr en local
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre la URL que te muestra la terminal (por defecto `http://localhost:5173`).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build para producción
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+Genera todo en `dist/` — subís esa carpeta a donde despliegues (Vercel,
+Netlify, etc. — el mismo flujo que usás para tus otros proyectos Vite).
 
-To learn more about Next.js, take a look at the following resources:
+## Estructura
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+index.html          — estructura de la página (hero, mapa, fotos, marcas)
+src/
+  style.css          — todos los estilos
+  site-data.json      — TODO el texto del sitio (ver abajo)
+  main.js             — textos, fotos, marcas (no depende de three.js)
+  map.js               — el mapa 3D (three.js) — módulo aparte a propósito
+public/
+  assets/
+    logos/             — logo Fugazzesions + logos de marcas
+    photos/edition2/    — fotos reales de la Fugazzesions #2
+    model-ed3.glb        — modelo 3D del galpón, Fugazzesions #3
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Editar contenido (textos, marcas)
 
-## Deploy on Vercel
+Todo el texto del sitio (hero, "el proyecto", stats, marcas y sus tiers)
+vive en **`src/site-data.json`**. Editalo directo ahí y guardá — con
+`npm run dev` corriendo, el navegador recarga solo.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Agregar ediciones (#1, #2, #4...)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Fotos**: poné los archivos en `public/assets/photos/edition<N>/` y
+  agregá las rutas en el array `PHOTOS` de `src/main.js` (mismo patrón
+  que la edición 2).
+- **Modelo 3D**: poné el `.glb` en `public/assets/` y referencialo en el
+  array `EDITIONS` de `src/map.js` (campo `model`). Los nodos del
+  modelo tienen que llamarse igual que las keys de `HOTSPOTS` en
+  `src/main.js` (`entrada`, `pistaprincipal`, `pistaclases`,
+  `sectorchill`, `sectorDJ`, `banos`, `fumadores`, `Barracomida`)
+  para que los puntos clickeables funcionen.
+- Si un modelo pesa mucho, conviene optimizarlo antes con
+  [`gltf-transform`](https://gltf-transform.dev/) (`dedup` → `prune` →
+  `resize` → `webp`) — así se hizo con el de la #3 (bajó de ~10MB a
+  ~2.4MB sin perder calidad visible).
+
+## Marcas / sponsors
+
+Están en `src/site-data.json` → `brands.main` (Plano, Majorani, Sauzal)
+y `brands.featured` (el resto). Cada una es `{ "name": "...", "logo": "clave" }`
+— la clave tiene que existir en `ASSETS.brandLogos` dentro de `src/main.js`,
+apuntando a un archivo en `public/assets/logos/`.

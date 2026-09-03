@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fugazzesions</title>
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+<div class="topstrip checker"></div>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="wrap hero-inner">
+    <img class="hero-logo" src="/assets/logos/wordmark.png" alt="Fugazzesions">
+    <div class="hero-tagline" data-field="hero.tagline" spellcheck="false"></div>
+    <p class="hero-sub" data-field="hero.sub" spellcheck="false"></p>
+    <div class="hero-badges">
+      <span class="badge">3 ediciones realizadas</span>
+      <span class="badge next" id="hero-next-badge"></span>
+    </div>
+    <img class="hero-mascot" src="/assets/logos/mascot.png" alt="">
+  </div>
+</header>
+
+<!-- ================= CONCEPTO ================= -->
+<section id="concepto">
+  <div class="wrap concepto-grid">
+    <div class="concepto-copy">
+      <div class="eyebrow">El proyecto</div>
+      <h2 style="margin:10px 0 16px;">Patinar distinto, <br>desde cero cada vez.</h2>
+      <p data-field="concept.p1" spellcheck="false"></p>
+      <span class="motto" data-field="concept.motto" spellcheck="false"></span>
+      <p data-field="concept.p2" spellcheck="false"></p>
+      <p data-field="concept.p3" spellcheck="false"></p>
+    </div>
+    <div class="stat-card">
+      <div class="stat-row"><span class="stat-label">Ediciones realizadas</span><span class="stat-value" data-field="stats.ediciones" spellcheck="false"></span></div>
+      <div class="stat-row"><span class="stat-label">Próxima edición</span><span class="stat-value" data-field="stats.proxima" spellcheck="false"></span></div>
+      <div class="stat-row"><span class="stat-label">Ubicación</span><span class="stat-value" data-field="stats.ubicacion" spellcheck="false"></span></div>
+      <div class="stat-row"><span class="stat-label">Spots</span><span class="stat-value" data-field="stats.spots" spellcheck="false"></span></div>
+      <div class="stat-row"><span class="stat-label">Formato</span><span class="stat-value" data-field="stats.formato" spellcheck="false"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MAPA INTERACTIVO ================= -->
+<section class="mapa-section" id="mapa">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Mapa interactivo</div>
+      <h2>Recorré el lugar.</h2>
+      <p class="lead">Modelo 3D real del galpón, sector por sector. Arrastrá para moverte y tocá una zona del mapa para ver qué pasó ahí.</p>
+    </div>
+
+    <div class="ed-switch" id="ed-switch"></div>
+
+    <div class="map-stage">
+      <canvas id="map-canvas"></canvas>
+      <div class="map-loading" id="map-loading">
+        <img src="/assets/logos/mascot.png" alt="">
+        <div class="bar"><div class="bar-fill" id="map-bar-fill"></div></div>
+        <div class="pct" id="map-pct">Cargando modelo 3D… 0%</div>
+      </div>
+      <div class="map-soon" id="map-soon" hidden>
+        <div class="big" id="map-soon-title">#1</div>
+        <p id="map-soon-text"></p>
+      </div>
+      <div class="map-hint" id="map-hint">arrastrá para girar · tocá una zona para ver info</div>
+    </div>
+
+    <div class="map-legend" id="map-legend"></div>
+
+    <div class="map-panel empty" id="map-panel">
+      <div class="ph-eyebrow">Zona</div>
+      <div class="ph-title" id="panel-title">Elegí un punto del mapa</div>
+      <p class="ph-desc" id="panel-desc">Tocá cualquier sector del modelo 3D — la pista, la barra, el sector DJ — para ver de qué se trata.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOTOS ================= -->
+<section id="fotos">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Ediciones anteriores</div>
+      <h2>Cómo fue evolucionando.</h2>
+      <p>Un repaso edición por edición. Fotos: <strong>Tania Levy</strong>.</p>
+    </div>
+    <div id="photo-blocks"></div>
+  </div>
+</section>
+
+<!-- ================= MARCAS ================= -->
+<section id="marcas">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Media kit</div>
+      <h2>Marcas que apoyan el proyecto.</h2>
+      <p>A lo largo de estas 3 ediciones, estas marcas pusieron su granito de arena para que Fugazzesions exista.</p>
+    </div>
+
+    <div class="tier main">
+      <div class="tier-label">Main sponsors</div>
+      <div class="brand-row" id="brands-main"></div>
+    </div>
+    <div class="tier featured">
+      <div class="tier-label">Sponsors destacados</div>
+      <div class="brand-row" id="brands-featured"></div>
+    </div>
+
+    <div class="brand-cta">
+      <p>¿Tu marca quiere sumarse a Fugazzesions #4?</p>
+      <a href="mailto:fugazzesions@gmail.com" class="maplink">escribinos →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INFO ================= -->
+<section id="info">
+  <div class="wrap info-grid">
+    <div class="info-card">
+      <div class="eyebrow" style="margin-bottom:10px;">Ubicación</div>
+      <h3>Dónde se hace</h3>
+      <div class="addr">Ballivián 2329<br>Villa Ortúzar, Buenos Aires</div>
+      <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Ballivi%C3%A1n%202329%2C%20Villa%20Ortuzar%2C%20Buenos%20Aires" target="_blank" rel="noopener">ver en el mapa →</a>
+    </div>
+    <div class="info-card">
+      <div class="eyebrow" style="margin-bottom:10px;">Próxima edición</div>
+      <h3>Fugazzesions #4</h3>
+      <p style="margin:0;" data-field="edition4.infoText" spellcheck="false"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACTO ================= -->
+<section class="contact-section" id="contacto">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Contacto</div>
+      <h2>Sumate al proyecto.</h2>
+      <p class="lead" style="color:#CFC5AF;">Para marcas, prensa o cualquier consulta sobre Fugazzesions.</p>
+    </div>
+    <div class="contact-grid">
+      <a class="contact-card" href="https://wa.me/5491122773433" target="_blank" rel="noopener">
+        <span class="label">WhatsApp — Lucas Majorana</span>
+        <span class="value">+54 9 11 2277-3433</span>
+      </a>
+      <a class="contact-card" href="mailto:fugazzesions@gmail.com">
+        <span class="label">Email</span>
+        <span class="value">fugazzesions@gmail.com</span>
+      </a>
+      <a class="contact-card" href="https://www.instagram.com/fugazzesions/" target="_blank" rel="noopener">
+        <span class="label">Instagram</span>
+        <span class="value">@fugazzesions</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:space-between;width:100%;align-items:center;">
+    <span>Fugazzesions — hecho por y para patinadores. Fotografía: Tania Levy.</span>
+    <span style="display:flex;gap:14px;align-items:center;">
+      <a href="https://www.instagram.com/majorani_/" target="_blank" rel="noopener">@majorani_</a> ·
+      <a href="https://instagram.com/plano.brand/" target="_blank" rel="noopener">@plano.brand</a>
+    </span>
+  </div>
+</footer>
+
+<script type="module" src="/src/main.js"></script>
+<script type="module" src="/src/map.js"></script>
+</body>
+</html>
