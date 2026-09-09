@@ -198,14 +198,14 @@ buildBrands();
     dots[idx].classList.add('active');
   };
 
-  let timer = setInterval(() => show((idx + 2) % tiles.length), 1000);
+  let timer = setInterval(() => show((idx + 1) % tiles.length), 2000);
 
   dots.forEach((dot, i) => {
     dot.addEventListener('click', () => {
       if (i === idx) return;
       clearInterval(timer);
       show(i);
-      timer = setInterval(() => show((idx + 2) % tiles.length), 1000);
+      timer = setInterval(() => show((idx + 1) % tiles.length), 2000);
     });
   });
 })();
