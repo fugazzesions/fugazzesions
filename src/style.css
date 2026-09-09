@@ -177,9 +177,33 @@
   .sponsors-row .brand-tile .logo-img{ display:block; height:78px; width:auto; max-width:170px; object-fit:contain; }
   .sponsors-row .brand-tile .name{ display:none; }
   .sponsors-row .brand-tile .dot{ width:9px; height:9px; border-radius:50%; background:var(--red); }
+
+  /* En mobile no entran los 4 logos comodos en fila, asi que se muestra
+     un carrusel: un logo a la vista, rotando solo cada 1s (ver main.js,
+     setupSponsorsCarousel). Los tiles quedan apilados con position:absolute
+     y van cambiando de opacidad; el contenedor necesita altura fija porque
+     position:absolute los saca del flujo/grid. */
+  .sponsors-dots{ display:none; }
   @media (max-width:640px){
-    .sponsors-row{ grid-template-columns:repeat(2,1fr); gap:30px 20px; }
-    .sponsors-row .brand-tile .logo-img{ height:58px; max-width:130px; }
+    .sponsors-row{
+      grid-template-columns:1fr;
+      position:relative;
+      height:112px;
+    }
+    .sponsors-row .brand-tile{
+      position:absolute; inset:0;
+      opacity:0; pointer-events:none;
+      transition:opacity .5s ease;
+    }
+    .sponsors-row .brand-tile.active{ opacity:1; pointer-events:auto; }
+    .sponsors-row .brand-tile .logo-img{ height:66px; max-width:190px; }
+
+    .sponsors-dots{ display:flex; justify-content:center; gap:8px; margin-top:10px; }
+    .sponsors-dots button{
+      width:7px; height:7px; padding:0; border:none; border-radius:50%;
+      background:var(--line); cursor:pointer;
+    }
+    .sponsors-dots button.active{ background:var(--red); }
   }
 
   .brand-cta{ margin-top:40px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; background:var(--paper-2); border:2px solid var(--ink); border-radius:var(--radius-m); padding:22px 26px; }

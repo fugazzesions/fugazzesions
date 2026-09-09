@@ -166,6 +166,50 @@ function buildBrands(){
 }
 buildBrands();
 
+/* En desktop la fila se ve entera (el CSS de arriba de 640px ignora la
+   clase .active) — esto solo importa en mobile, donde los tiles quedan
+   apilados y se van turnando cada 1s. Se deja corriendo siempre para no
+   depender de matchMedia ni de escuchar resize. */
+(function setupSponsorsCarousel(){
+  const row = document.getElementById('brands-main');
+  const tiles = Array.from(row.querySelectorAll('.brand-tile'));
+  if (tiles.length < 2) return;
+
+  const dotsWrap = document.createElement('div');
+  dotsWrap.className = 'sponsors-dots';
+  tiles.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.setAttribute('aria-label', `Ver marca ${i + 1} de ${tiles.length}`);
+    dotsWrap.appendChild(dot);
+  });
+  row.insertAdjacentElement('afterend', dotsWrap);
+  const dots = Array.from(dotsWrap.children);
+
+  let idx = 0;
+  tiles[0].classList.add('active');
+  dots[0].classList.add('active');
+
+  const show = (next) => {
+    tiles[idx].classList.remove('active');
+    dots[idx].classList.remove('active');
+    idx = next;
+    tiles[idx].classList.add('active');
+    dots[idx].classList.add('active');
+  };
+
+  let timer = setInterval(() => show((idx + 1) % tiles.length), 1000);
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      if (i === idx) return;
+      clearInterval(timer);
+      show(i);
+      timer = setInterval(() => show((idx + 1) % tiles.length), 1000);
+    });
+  });
+})();
+
 /* ============================================================
    LOGOS
    ============================================================ */
