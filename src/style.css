@@ -159,33 +159,30 @@
   .tile span{ opacity:.7; }
 
   /* ---------- MARCAS ---------- */
-  .tier{ margin-bottom:34px; }
-  .tier:last-child{ margin-bottom:0; }
-  .tier-label{ font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.12em; color:var(--ink-soft); margin-bottom:14px; display:flex; align-items:center; gap:10px; }
-  .tier-label::after{ content:''; flex:1; height:1px; background:var(--line); }
-  .brand-row{ display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:center; }
-  .brand-tile{ border:2.5px solid var(--ink); border-radius:var(--radius-s); background:var(--white); padding:18px 24px; font-family:'Anton'; letter-spacing:.01em; display:flex; align-items:center; gap:10px; }
-  .tier.main .brand-tile{ font-size:22px; padding:22px 30px; }
-  .tier.featured .brand-tile{ font-size:17px; border-width:2px; }
-  .tier.more .brand-tile{ font-size:13px; font-family:'JetBrains Mono',monospace; border-style:dashed; color:var(--ink-soft); border-color:var(--line); background:transparent; }
-  .brand-tile .dot{ width:9px; height:9px; border-radius:50%; background:var(--red); flex:none; }
-  .brand-tile .name{ outline:none; }
-  .brand-tile.has-logo{
-    flex-direction:column; gap:6px; justify-content:center; align-items:center;
-    border:none; border-radius:0; background:transparent; padding:8px 10px;
-    width:150px;
+  /* Solo 4 sponsors (los que sostienen el proyecto) — una fila espaciosa,
+     solo el logo, sin recuadros ni jerarquia de tiers. */
+  .sponsors-row{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px 32px;
+    align-items:center;
+    justify-items:center;
+    max-width:820px;
+    margin:0 auto;
   }
-  .brand-tile.has-logo .logo-img{ display:block; height:52px; width:auto; max-width:130px; object-fit:contain; margin:0 auto; }
-  .tier.main .brand-tile.has-logo{ width:170px; }
-  .tier.main .brand-tile.has-logo .logo-img{ height:60px; max-width:150px; }
-  .tier.featured .brand-tile.has-logo{ width:160px; }
-  .tier.featured .brand-tile.has-logo .logo-img{ height:48px; max-width:140px; }
-  .tier.more .brand-tile.has-logo{ border:none; background:transparent; width:130px; }
-  .tier.more .brand-tile.has-logo .logo-img{ height:38px; max-width:110px; }
-  .brand-tile.has-logo .dot{ display:none; }
-  .brand-tile.has-logo .name{ display:none; }
+  .sponsors-row .brand-tile{
+    display:flex; align-items:center; justify-content:center;
+    padding:10px; width:100%;
+  }
+  .sponsors-row .brand-tile .logo-img{ display:block; height:78px; width:auto; max-width:170px; object-fit:contain; }
+  .sponsors-row .brand-tile .name{ display:none; }
+  .sponsors-row .brand-tile .dot{ width:9px; height:9px; border-radius:50%; background:var(--red); }
+  @media (max-width:640px){
+    .sponsors-row{ grid-template-columns:repeat(2,1fr); gap:30px 20px; }
+    .sponsors-row .brand-tile .logo-img{ height:58px; max-width:130px; }
+  }
 
-  .brand-cta{ margin-top:36px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; background:var(--paper-2); border:2px solid var(--ink); border-radius:var(--radius-m); padding:22px 26px; }
+  .brand-cta{ margin-top:40px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; background:var(--paper-2); border:2px solid var(--ink); border-radius:var(--radius-m); padding:22px 26px; }
   .brand-cta p{ margin:0; color:var(--ink); font-weight:600; max-width:420px; }
   .maplink{ display:inline-flex; align-items:center; gap:6px; font-family:'JetBrains Mono',monospace; font-size:13px; text-decoration:none; color:var(--red-deep); border-bottom:1px solid var(--red-deep); padding-bottom:2px; }
 

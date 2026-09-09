@@ -163,7 +163,6 @@ function buildBrands(){
     });
   };
   fillTier('brands-main', 'main');
-  fillTier('brands-featured', 'featured');
 }
 buildBrands();
 

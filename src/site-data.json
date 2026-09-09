@@ -34,56 +34,10 @@
       {
         "name": "Sauzal",
         "logo": "sauzal"
-      }
-    ],
-    "featured": [
-      {
-        "name": "Adrenaline LAB",
-        "logo": "adrenaline"
       },
       {
         "name": "Samana Red",
         "logo": "samana"
-      },
-      {
-        "name": "Allu",
-        "logo": "allu"
-      },
-      {
-        "name": "Diamond Roller Skate Shop",
-        "logo": "diamond"
-      },
-      {
-        "name": "HBK",
-        "logo": "hbk"
-      },
-      {
-        "name": "Jungla Quad",
-        "logo": "junglaquad"
-      },
-      {
-        "name": "Leu",
-        "logo": "leu"
-      },
-      {
-        "name": "One Place",
-        "logo": "oneplace"
-      },
-      {
-        "name": "Qadabra",
-        "logo": "qadabra"
-      },
-      {
-        "name": "Quadskool x Emi Martin",
-        "logo": "quadskool"
-      },
-      {
-        "name": "Teuton Skate Ramps",
-        "logo": "teuton"
-      },
-      {
-        "name": "Ita Wax",
-        "logo": "itawax"
       }
     ]
   }
