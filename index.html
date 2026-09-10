@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fugazzesions</title>
   <link rel="stylesheet" href="/src/style.css">
+  <link rel="stylesheet" href="/src/ramp/ramp.css">
 </head>
 <body>
 <div class="topstrip checker"></div>
@@ -29,7 +30,7 @@
     <div class="section-head">
       <div class="eyebrow">Mapa interactivo</div>
       <h2>Recorré el lugar.</h2>
-      <p class="lead">Modelo 3D real de nuesto espacio, sector por sector. Arrastrá para moverte y tocá una zona del mapa para ver qué pasó ahí.</p>
+      <p class="lead">Modelo 3D real del galpón, sector por sector. Arrastrá para moverte y tocá una zona del mapa para ver qué pasó ahí.</p>
     </div>
 
     <div class="ed-switch" id="ed-switch"></div>
@@ -63,7 +64,7 @@
   <div class="wrap concepto-grid">
     <div class="concepto-copy">
       <div class="eyebrow">El proyecto</div>
-      <h2 style="margin:10px 0 16px;">Patinar distinto, <br>superate en cada edición!.</h2>
+      <h2 style="margin:10px 0 16px;">Patinar distinto, <br>desde cero cada vez.</h2>
       <p data-field="concept.p1" spellcheck="false"></p>
       <span class="motto" data-field="concept.motto" spellcheck="false"></span>
       <p data-field="concept.p2" spellcheck="false"></p>
@@ -97,14 +98,177 @@
     <div class="section-head" style="max-width:620px;margin-left:auto;margin-right:auto;text-align:center;align-items:center;">
       <div class="eyebrow">Media kit</div>
       <h2>Las marcas que sostienen el proyecto.</h2>
-      <p>Plano, Majorani, Sauzal y Samana Red.</p>
+      <p>Plano, Majorani, Sauzal y Samana Red — las que mueven Fugazzesions edición tras edición.</p>
     </div>
 
     <div class="sponsors-row" id="brands-main"></div>
 
     <div class="brand-cta">
       <p>¿Tu marca quiere sumarse a Fugazzesions #4?</p>
-      <a href="fugazzesions@gmail.com" class="maplink">escribinos →</a>
+      <a href="mailto:fugazzesions@gmail.com" class="maplink">escribinos →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RAMPA — PROBÁ TU LOGO ================= -->
+<section class="rampa-section" id="rampa">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Para marcas</div>
+      <h2>Probá tu logo en la rampa.</h2>
+      <p class="lead">Subí el PNG de tu marca y mirá en 3D, en tiempo real, cómo quedaría estampado sobre un obstáculo real de Fugazzesions.</p>
+    </div>
+
+    <div class="rampa-stage" id="rampa-stage">
+      <!-- 3D Canvas -->
+      <div id="canvas-container"></div>
+
+      <!-- Loading State -->
+      <div id="loading-overlay" class="loading-overlay">
+        <div class="loader-content">
+          <div class="spinner"></div>
+          <p class="loader-title">Cargando modelo 3D</p>
+          <span class="loader-sub" id="loader-sub">spot5.glb</span>
+        </div>
+      </div>
+
+      <!-- Header Floating Badge -->
+      <header class="top-bar">
+        <div class="brand-tag">
+          <span class="dot-live"></span>
+          <span class="title">Ramp Logo Studio</span>
+          <span class="version-chip" id="version-chip">spot5.glb</span>
+        </div>
+        <div class="controls-hint">
+          <span>🖱️ Arrastrar para rotar</span>
+          <span>•</span>
+          <span>🔍 Scroll para zoom</span>
+          <span>•</span>
+          <span>Clic derecho para desplazar</span>
+        </div>
+      </header>
+
+      <!-- Main Upload Floating Card -->
+      <aside class="floating-panel" id="upload-panel">
+        <div class="panel-header">
+          <h1 class="panel-title">Estampar logo</h1>
+          <p class="panel-desc">Subí tu logo PNG con fondo transparente. Se centra y escala automáticamente en la cara pintada de la rampa.</p>
+        </div>
+
+        <!-- Drop Zone -->
+        <div id="drop-zone" class="drop-zone" tabindex="0" role="button" aria-label="Subir logo PNG">
+          <input type="file" id="logo-input" accept="image/png" class="visually-hidden">
+          <div class="drop-zone-idle" id="drop-zone-idle">
+            <div class="upload-icon-wrapper">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+              </svg>
+            </div>
+            <p class="drop-main-text">Arrastrá tu PNG acá</p>
+            <p class="drop-sub-text">o hacé clic para explorar tus archivos</p>
+            <span class="badge-format">Solo PNG transparente</span>
+          </div>
+
+          <!-- Active File Info (when uploaded) -->
+          <div class="drop-zone-active hidden" id="drop-zone-active">
+            <div class="file-preview-thumb">
+              <img id="logo-thumbnail" src="" alt="Vista previa del logo">
+            </div>
+            <div class="file-details">
+              <span class="file-name" id="file-name">logo.png</span>
+              <span class="file-dims" id="file-dims">- x - px</span>
+            </div>
+            <button type="button" id="btn-change-file" class="btn-change" title="Cambiar logo">
+              Reemplazar
+            </button>
+          </div>
+        </div>
+
+        <!-- Face Cycle Control (modo auto: caras detectadas sin nombre, se ciclan de a una) -->
+        <div class="face-control" id="face-control">
+          <span class="face-label" id="face-label">Cara 1 / 1</span>
+          <div class="face-buttons">
+            <button type="button" id="btn-face-prev" class="face-btn" title="Cara anterior" aria-label="Cara anterior">‹</button>
+            <span class="face-hint">Cambiar cara</span>
+            <button type="button" id="btn-face-next" class="face-btn" title="Cara siguiente" aria-label="Cara siguiente">›</button>
+          </div>
+        </div>
+
+        <!-- Zone Picker (modo LogoZone: 2+ zonas nombradas a mano, elegís directamente cuál) -->
+        <div class="face-control hidden" id="zone-picker-control">
+          <span class="face-hint">Elegir zona</span>
+          <div class="zone-buttons" id="zone-buttons"></div>
+        </div>
+
+        <!-- Logo Orientation Control -->
+        <div class="face-control" id="orientation-control">
+          <span class="face-hint">Orientación del logo</span>
+          <div class="face-buttons">
+            <button type="button" id="btn-rotate-logo" class="face-btn" title="Rotar 90°" aria-label="Rotar 90°">⟳</button>
+            <button type="button" id="btn-flip-h" class="face-btn" title="Voltear horizontal" aria-label="Voltear horizontal">⇋</button>
+            <button type="button" id="btn-flip-v" class="face-btn" title="Voltear vertical" aria-label="Voltear vertical">⇵</button>
+          </div>
+        </div>
+
+        <!-- Transparency Alert (shown if PNG is opaque) -->
+        <div id="alert-no-transparency" class="alert-box alert-warning hidden" role="alert">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          <div class="alert-content">
+            <strong>Aviso:</strong> Tu logo no tiene fondo transparente, puede verse con un recuadro.
+          </div>
+        </div>
+
+        <!-- Error Alert -->
+        <div id="alert-error" class="alert-box alert-error hidden" role="alert">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          <div class="alert-content" id="error-message">
+            Error al procesar el archivo.
+          </div>
+        </div>
+
+        <!-- Live Status / Reset -->
+        <div class="panel-footer" id="panel-footer">
+          <div class="status-indicator">
+            <span class="status-dot" id="status-dot"></span>
+            <span class="status-text" id="status-text">Sin logo • Negro original</span>
+          </div>
+          <button type="button" id="btn-remove-logo" class="btn-text hidden">
+            Quitar logo
+          </button>
+        </div>
+      </aside>
+
+      <!-- Model Picker Panel -->
+      <aside class="floating-panel model-panel" id="model-panel">
+        <div class="panel-header">
+          <h1 class="panel-title">Elegir spot</h1>
+          <p class="panel-desc">El logo subido se re-proyecta solo al cambiar de rampa.</p>
+        </div>
+        <div class="model-list" id="model-list">
+          <!-- generado por JS -->
+        </div>
+      </aside>
+
+      <!-- Camera Reset floating button -->
+      <div class="bottom-tools">
+        <button type="button" id="btn-reset-view" class="tool-btn" title="Restablecer vista de cámara">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+            <path d="M3 3v5h5"></path>
+          </svg>
+          <span>Centrar rampa</span>
+        </button>
+      </div>
     </div>
   </div>
 </section>
@@ -139,7 +303,7 @@
         <span class="label">WhatsApp — Lucas Majorana</span>
         <span class="value">+54 9 11 2277-3433</span>
       </a>
-      <a class="contact-card" href="fugazzesions@gmail.com">
+      <a class="contact-card" href="mailto:fugazzesions@gmail.com">
         <span class="label">Email</span>
         <span class="value">fugazzesions@gmail.com</span>
       </a>
@@ -163,5 +327,6 @@
 
 <script type="module" src="/src/main.js"></script>
 <script type="module" src="/src/map.js"></script>
+<script type="module" src="/src/ramp/ramp-main.js"></script>
 </body>
 </html>
