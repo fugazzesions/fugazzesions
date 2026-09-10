@@ -120,35 +120,40 @@
     </div>
 
     <div class="rampa-stage" id="rampa-stage">
-      <!-- 3D Canvas -->
-      <div id="canvas-container"></div>
+      <!-- Viewport 3D: en mobile esto queda como el único elemento que se
+           superpone visualmente (canvas + loading + badge), todos los
+           paneles de controles van DESPUÉS, en flujo normal, nunca encima. -->
+      <div class="rampa-viewport" id="rampa-viewport">
+        <!-- 3D Canvas -->
+        <div id="canvas-container"></div>
 
-      <!-- Loading State -->
-      <div id="loading-overlay" class="loading-overlay">
-        <div class="loader-content">
-          <div class="spinner"></div>
-          <p class="loader-title">Cargando modelo 3D</p>
-          <span class="loader-sub" id="loader-sub">spot5.glb</span>
+        <!-- Loading State -->
+        <div id="loading-overlay" class="loading-overlay">
+          <div class="loader-content">
+            <div class="spinner"></div>
+            <p class="loader-title">Cargando modelo 3D</p>
+            <span class="loader-sub" id="loader-sub">spot5.glb</span>
+          </div>
         </div>
+
+        <!-- Header Floating Badge -->
+        <header class="top-bar">
+          <div class="brand-tag">
+            <span class="dot-live"></span>
+            <span class="title">Ramp Logo Studio</span>
+            <span class="version-chip" id="version-chip">spot5.glb</span>
+          </div>
+          <div class="controls-hint">
+            <span>🖱️ Arrastrar para rotar</span>
+            <span>•</span>
+            <span>🔍 Scroll para zoom</span>
+            <span>•</span>
+            <span>Clic derecho para desplazar</span>
+          </div>
+        </header>
       </div>
 
-      <!-- Header Floating Badge -->
-      <header class="top-bar">
-        <div class="brand-tag">
-          <span class="dot-live"></span>
-          <span class="title">Ramp Logo Studio</span>
-          <span class="version-chip" id="version-chip">spot5.glb</span>
-        </div>
-        <div class="controls-hint">
-          <span>🖱️ Arrastrar para rotar</span>
-          <span>•</span>
-          <span>🔍 Scroll para zoom</span>
-          <span>•</span>
-          <span>Clic derecho para desplazar</span>
-        </div>
-      </header>
-
-      <!-- Main Upload Floating Card -->
+      <!-- Main Upload Card -->
       <aside class="floating-panel" id="upload-panel">
         <div class="panel-header">
           <h1 class="panel-title">Estampar logo</h1>
@@ -166,9 +171,14 @@
                 <line x1="12" y1="3" x2="12" y2="15"></line>
               </svg>
             </div>
-            <p class="drop-main-text">Arrastrá tu PNG acá</p>
-            <p class="drop-sub-text">o hacé clic para explorar tus archivos</p>
-            <span class="badge-format">Solo PNG transparente</span>
+            <!-- display:contents en desktop (no cambia nada); en mobile pasa
+                 a ser una columna de texto al lado del ícono, en vez de
+                 apilarse todo verticalmente. -->
+            <div class="drop-zone-idle-text">
+              <p class="drop-main-text">Arrastrá tu PNG acá</p>
+              <p class="drop-sub-text">o hacé clic para explorar tus archivos</p>
+              <span class="badge-format">Solo PNG transparente</span>
+            </div>
           </div>
 
           <!-- Active File Info (when uploaded) -->
@@ -254,8 +264,12 @@
           <h1 class="panel-title">Elegir spot</h1>
           <p class="panel-desc">El logo subido se re-proyecta solo al cambiar de rampa.</p>
         </div>
-        <div class="model-list" id="model-list">
-          <!-- generado por JS -->
+        <div class="model-list-row">
+          <button type="button" id="btn-model-prev" class="scroller-arrow" aria-label="Ver spots anteriores">‹</button>
+          <div class="model-list" id="model-list">
+            <!-- generado por JS -->
+          </div>
+          <button type="button" id="btn-model-next" class="scroller-arrow" aria-label="Ver más spots">›</button>
         </div>
       </aside>
 

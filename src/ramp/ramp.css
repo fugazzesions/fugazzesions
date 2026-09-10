@@ -50,27 +50,57 @@
 
 /* Reemplaza el #app{width:100vw;height:100vh} original: acá la "pantalla"
    de la herramienta es este contenedor embebido, del mismo alto que el
-   .map-stage de la sección del mapa 3D. */
+   .map-stage de la sección del mapa 3D.
+   .rampa-stage es el contenedor general (en desktop, del mismo tamaño que
+   .rampa-viewport — es solo el ancla de posición para los paneles
+   flotantes). .rampa-viewport es la caja del 3D en sí (canvas + loading +
+   badge). Separarlos en dos elementos es lo que permite que en mobile los
+   paneles dejen de flotar ENCIMA del 3D y pasen a vivir abajo, en flujo
+   normal, sin tocar la lógica de scene.js (sigue viendo un contenedor con
+   el tamaño correcto, solo cambia qué elemento lo define). */
 .rampa-stage {
   position: relative;
   width: 100%;
   aspect-ratio: 16/10;
-  overflow: hidden;
-  border: 2px solid #6B6252;
-  border-radius: var(--radius-md);
-  background: radial-gradient(circle at 50% 30%, #2A2419, #17130D 78%);
   font-family: var(--font-sans);
   color: var(--text-primary);
   user-select: none;
 }
 
+.rampa-viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border: 2px solid #6B6252;
+  border-radius: var(--radius-md);
+  background: radial-gradient(circle at 50% 30%, #2A2419, #17130D 78%);
+}
+
 @media (max-width: 640px) {
   .rampa-stage {
-    /* El panel de subida (anclado arriba) y el de spots (anclado abajo)
-       flotan uno encima del otro como en el proyecto original — necesitan
-       bastante alto para no superponerse en mobile. */
+    /* Ya no hay nada flotando encima del 3D, así que no necesita alto
+       fijo para "hacerle lugar" a paneles superpuestos — cada panel mide
+       lo que su propio contenido pida, apilados en columna. */
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
     aspect-ratio: auto;
-    height: 860px;
+  }
+
+  .rampa-viewport {
+    /* El "recuadro" del 3D deja de compartir espacio con los paneles de
+       control (que ahora van abajo), así que puede ocupar más alto de
+       pantalla y perder el marco/borde — sangra hasta el borde de la
+       pantalla (el sitio ya tiene overflow-x:hidden en body, así que esto
+       no genera scroll horizontal) para una sensación más de pantalla
+       completa. */
+    position: relative;
+    inset: auto;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    height: min(74vh, 600px);
+    border: none;
+    border-radius: 0;
   }
 }
 
@@ -296,6 +326,14 @@
   flex-direction: column;
   align-items: center;
   gap: 8px;
+}
+
+/* En desktop "desaparece" del layout (display:contents) — sus hijos se
+   comportan como si fueran directos de .drop-zone-idle, cero cambio visual.
+   En mobile pasa a ser la columna de texto al lado del ícono (ver media
+   query de abajo). */
+.drop-zone-idle-text {
+  display: contents;
 }
 
 .upload-icon-wrapper {
@@ -585,13 +623,49 @@
   width: 220px;
 }
 
+/* Envuelve .model-list para poder ponerle flechas al costado en mobile
+   (ver media query) — en desktop es un wrapper transparente. */
+.model-list-row {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+}
+
 .model-list {
   display: flex;
   flex-direction: column;
+  flex: 1;
+  min-width: 0;
   gap: 6px;
   max-height: 320px;
   overflow-y: auto;
   padding-right: 2px;
+}
+
+/* Flechas del picker de spots: solo tienen sentido en mobile, donde la
+   lista pasa a ser una fila horizontal angosta (ver media query). En
+   desktop la lista ya se ve completa (columna con scroll propio). */
+.scroller-arrow {
+  display: none;
+  flex-shrink: 0;
+  align-self: center;
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--panel-border);
+  border-radius: 50%;
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.scroller-arrow:hover {
+  background: rgba(194, 42, 46, 0.2);
+  border-color: var(--accent-primary);
 }
 
 .model-item {
@@ -690,43 +764,75 @@
     left: 12px;
     right: 12px;
   }
-  
+
   .controls-hint {
     display: none;
   }
-  
+
+  /* Los paneles dejan de flotar ENCIMA del 3D (que era lo que obligaba a
+     .rampa-viewport a tener tanto alto para que no se pisaran entre sí):
+     pasan a flujo normal, una tarjeta abajo de la otra, siempre por
+     fuera de la vista del modelo. */
   .floating-panel {
-    top: 64px;
-    left: 12px;
-    right: 12px;
-    width: auto;
+    position: static;
+    width: 100%;
+    max-width: none;
     padding: 16px;
+    animation: none;
   }
-  
-  .bottom-tools {
-    bottom: 100px;
-    right: 12px;
+
+  .drop-zone {
+    padding: 14px 16px;
+  }
+
+  /* Ícono a la izquierda + columna de texto a la derecha, en vez de todo
+     apilado y centrado — mismo contenido, más compacto en alto. */
+  .drop-zone-idle {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    gap: 12px;
+  }
+
+  .drop-zone-idle-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .upload-icon-wrapper {
+    margin-bottom: 0;
   }
 
   .model-panel {
-    top: auto;
-    bottom: 12px;
-    left: 12px;
-    right: 12px;
-    width: auto;
-    padding: 12px;
+    width: 100%;
   }
 
+  /* Picker de spots: fila horizontal angosta con flechas a los costados
+     en vez de una columna larga — cabe sin ocupar media pantalla. */
   .model-list {
     flex-direction: row;
     max-height: none;
     overflow-x: auto;
     overflow-y: hidden;
     padding-bottom: 2px;
+    scroll-behavior: smooth;
   }
 
   .model-item {
     flex: 0 0 auto;
     min-width: 110px;
+  }
+
+  .scroller-arrow {
+    display: flex;
+  }
+
+  /* El botón de centrar cámara sale del 3D también — pasa a ser su
+     propia fila en vez de flotar sobre el picker de spots. */
+  .bottom-tools {
+    position: static;
+    justify-content: flex-end;
   }
 }

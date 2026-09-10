@@ -14,7 +14,7 @@ const sectionRoot = document.getElementById('rampa');
 if (sectionRoot) {
   // DOM Elements
   const canvasContainer = document.getElementById('canvas-container');
-  const stageEl = document.getElementById('rampa-stage');
+  const viewportEl = document.getElementById('rampa-viewport');
   const loadingOverlay = document.getElementById('loading-overlay');
   const dropZone = document.getElementById('drop-zone');
   const logoInput = document.getElementById('logo-input');
@@ -43,6 +43,8 @@ if (sectionRoot) {
   const btnRotateLogo = document.getElementById('btn-rotate-logo');
   const btnFlipH = document.getElementById('btn-flip-h');
   const btnFlipV = document.getElementById('btn-flip-v');
+  const btnModelPrev = document.getElementById('btn-model-prev');
+  const btnModelNext = document.getElementById('btn-model-next');
 
   // State
   let scene = null;
@@ -72,17 +74,30 @@ if (sectionRoot) {
 
   // scene.js escucha resize de `window` (igual que map.js) para
   // recalcular tamaño/aspecto — eso no alcanza acá porque el tamaño real
-  // que importa es el del contenedor .rampa-stage, no el de la ventana
-  // (puede cambiar por layout — fuentes/imágenes terminando de cargar en
-  // el resto de la página — sin que la ventana en sí cambie de tamaño).
-  // Un ResizeObserver sobre el stage dispara un resize sintético para que
-  // el listener existente de scene.js haga el recálculo sin tocar scene.js.
-  if (stageEl && window.ResizeObserver) {
+  // que importa es el del contenedor .rampa-viewport (donde vive
+  // #canvas-container), no el de la ventana (puede cambiar por layout —
+  // fuentes/imágenes terminando de cargar en el resto de la página — sin
+  // que la ventana en sí cambie de tamaño, o por el media query mobile que
+  // le da al viewport su propio alto). Un ResizeObserver sobre el
+  // viewport dispara un resize sintético para que el listener existente
+  // de scene.js haga el recálculo sin tocar scene.js.
+  if (viewportEl && window.ResizeObserver) {
     const ro = new ResizeObserver(() => {
       window.dispatchEvent(new Event('resize'));
     });
-    ro.observe(stageEl);
+    ro.observe(viewportEl);
   }
+
+  // Picker de spots angosto en mobile: flechas para desplazar la fila
+  // horizontal sin depender solo del gesto de swipe (oculto por CSS en
+  // desktop, donde la lista ya se ve completa).
+  function scrollModelList(direction) {
+    if (!modelList) return;
+    const amount = Math.max(160, Math.round(modelList.clientWidth * 0.7)) * direction;
+    modelList.scrollBy({ left: amount, behavior: 'smooth' });
+  }
+  btnModelPrev?.addEventListener('click', () => scrollModelList(-1));
+  btnModelNext?.addEventListener('click', () => scrollModelList(1));
 
   // Deriva un nombre lindo ("Zona 2") a partir de la key del cluster
   // ("logozone_2") que arma logoZones.js. "logozone" a secas (sin número)
