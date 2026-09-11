@@ -212,6 +212,16 @@
     .sponsors-dots button.active{ background:var(--red); }
   }
 
+  .benefits-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:36px; }
+  @media (max-width:820px){ .benefits-grid{ grid-template-columns:1fr; } }
+  .benefit-card{ border:2px solid var(--ink); border-radius:var(--radius-m); background:var(--white); padding:22px 22px 20px; display:flex; flex-direction:column; gap:6px; }
+  .benefit-num{ font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.1em; color:var(--red-deep); font-weight:700; }
+  .benefit-card h3{ font-size:18px; margin:2px 0 0; }
+  .benefit-card p{ margin:0; font-size:14px; }
+
+  .brands-proof{ margin-top:48px; text-align:center; }
+  .brands-proof-label{ display:block; font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-soft); margin-bottom:18px; }
+
   .brand-cta{ margin-top:40px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; background:var(--paper-2); border:2px solid var(--ink); border-radius:var(--radius-m); padding:22px 26px; }
   .brand-cta p{ margin:0; color:var(--ink); font-weight:600; max-width:420px; }
   .maplink{ display:inline-flex; align-items:center; gap:6px; font-family:'JetBrains Mono',monospace; font-size:13px; text-decoration:none; color:var(--red-deep); border-bottom:1px solid var(--red-deep); padding-bottom:2px; }
