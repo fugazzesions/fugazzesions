@@ -53,16 +53,19 @@ const HOTSPOTS = {
   Barracomida:       { title: 'Barra de comida',  desc: 'Pizza y bebidas para seguir con energía — parte de "pizza, patín y punto".' },
 };
 
-// fotos reales por edición (null = todavía no cargadas -> mosaico placeholder)
+// fotos reales, todas juntas (sin separar por edición)
 const PHOTOS = [
-  { edition: 1, real: null, placeholderCount: 6 },
-  { edition: 2, real: [
-      '/assets/photos/edition2/p01.jpg','/assets/photos/edition2/p02.jpg','/assets/photos/edition2/p03.jpg','/assets/photos/edition2/p04.jpg',
-      '/assets/photos/edition2/p05.jpg','/assets/photos/edition2/p06.jpg','/assets/photos/edition2/p07.jpg','/assets/photos/edition2/p08.jpg',
-      '/assets/photos/edition2/p09.jpg','/assets/photos/edition2/p10.jpg','/assets/photos/edition2/p11.jpg','/assets/photos/edition2/p12.jpg',
-      '/assets/photos/edition2/p13.jpg','/assets/photos/edition2/p14.jpg','/assets/photos/edition2/p15.jpg','/assets/photos/edition2/p16.jpg'
-    ] },
-  { edition: 3, real: null, placeholderCount: 8 },
+  '/assets/photos/p04.jpg',
+  '/assets/photos/p12.jpg',
+  '/assets/photos/p14.jpg',
+  '/assets/photos/p16.jpg',
+  '/assets/photos/FUGAIII-11.jpg',
+  '/assets/photos/FUGAIII-16.jpg',
+  '/assets/photos/FUGAIII-18.jpg',
+  '/assets/photos/FUGAIII-23.jpg',
+  '/assets/photos/FUGAIII-37.jpg',
+  '/assets/photos/FUGAIII-87.jpg',
+  '/assets/photos/FUGAIII-110.jpg',
 ];
 
 /* ============================================================
@@ -89,44 +92,17 @@ renderTextFields();
    FOTOS
    ============================================================ */
 (function buildPhotos(){
-  const root = document.getElementById('photo-blocks');
-  root.innerHTML = '';
-  PHOTOS.forEach(ed => {
-    const block = document.createElement('div');
-    block.className = 'ed-photo-block';
-
-    const head = document.createElement('div');
-    head.className = 'ed-photo-head';
-    head.innerHTML = `<h3>Fugazzesions #${ed.edition}</h3><span class="credit">foto: Tania Levy</span>`;
-    block.appendChild(head);
-
-    const mosaic = document.createElement('div');
-    mosaic.className = 'mosaic';
-
-    if (ed.real && ed.real.length){
-      ed.real.forEach((src, i) => {
-        const item = document.createElement('div');
-        item.className = 'mosaic-item';
-        const img = document.createElement('img');
-        img.src = src;
-        img.loading = 'lazy';
-        img.alt = `Fugazzesions #${ed.edition} — foto ${i + 1}`;
-        item.appendChild(img);
-        mosaic.appendChild(item);
-      });
-    } else {
-      for (let i = 0; i < (ed.placeholderCount || 6); i++){
-        const item = document.createElement('div');
-        item.className = 'mosaic-item';
-        const tile = document.createElement('div');
-        tile.className = 'tile';
-        tile.innerHTML = `Fugazzesions #${ed.edition}<br><span>foto pendiente</span>`;
-        item.appendChild(tile);
-        mosaic.appendChild(item);
-      }
-    }
-    block.appendChild(mosaic);
-    root.appendChild(block);
+  const mosaic = document.getElementById('photo-blocks');
+  mosaic.innerHTML = '';
+  PHOTOS.forEach((src, i) => {
+    const item = document.createElement('div');
+    item.className = 'mosaic-item';
+    const img = document.createElement('img');
+    img.src = src;
+    img.loading = 'lazy';
+    img.alt = `Fugazzesions — foto ${i + 1}`;
+    item.appendChild(img);
+    mosaic.appendChild(item);
   });
 })();
 

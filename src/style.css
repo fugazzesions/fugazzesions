@@ -146,23 +146,10 @@
   .map-legend button:hover, .map-legend button.on{ border-color:var(--red); color:var(--white); }
 
   /* ---------- FOTOS ---------- */
-  .ed-photo-block{ margin-bottom:44px; }
-  .ed-photo-block:last-child{ margin-bottom:0; }
-  .ed-photo-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:14px; flex-wrap:wrap; }
-  .ed-photo-head h3{ font-size:26px; }
-  .ed-photo-head .credit{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-soft); letter-spacing:.03em; }
-
   .mosaic{ columns:4 220px; column-gap:8px; }
   @media (max-width:720px){ .mosaic{ columns:2 160px; } }
   .mosaic-item{ break-inside:avoid; margin-bottom:8px; }
   .mosaic-item img{ width:100%; border-radius:var(--radius-s); display:block; }
-  .tile{
-    border:2px dashed var(--line); border-radius:var(--radius-s); background:var(--paper-2);
-    display:flex; align-items:center; justify-content:center; text-align:center; color:var(--ink-soft);
-    font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.03em; padding:6px;
-    line-height:1.4; aspect-ratio:2/3;
-  }
-  .tile span{ opacity:.7; }
 
   /* ---------- MARCAS ---------- */
   /* Solo 4 sponsors (los que sostienen el proyecto) — una fila espaciosa,
