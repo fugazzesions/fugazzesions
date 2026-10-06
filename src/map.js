@@ -21,6 +21,7 @@ const hintEl = document.getElementById('map-hint');
 const panelEl = document.getElementById('map-panel');
 const panelTitle = document.getElementById('panel-title');
 const panelDesc = document.getElementById('panel-desc');
+const panelPhoto = document.getElementById('panel-photo');
 const legendEl = document.getElementById('map-legend');
 const switchEl = document.getElementById('ed-switch');
 
@@ -150,11 +151,21 @@ function setPanel(hit){
     panelEl.classList.add('empty');
     panelTitle.textContent = 'Elegí un punto del mapa';
     panelDesc.textContent = 'Tocá cualquier sector del modelo 3D — la pista, la barra, el sector DJ — para ver de qué se trata.';
+    panelPhoto.hidden = true;
+    panelPhoto.removeAttribute('src');
     return;
   }
   panelEl.classList.remove('empty');
   panelTitle.textContent = hit.title;
   panelDesc.textContent = hit.desc;
+  if (hit.photo){
+    panelPhoto.src = hit.photo;
+    panelPhoto.alt = hit.title;
+    panelPhoto.hidden = false;
+  } else {
+    panelPhoto.hidden = true;
+    panelPhoto.removeAttribute('src');
+  }
   legendEl.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.name === hit.key));
 }
 
@@ -188,7 +199,7 @@ function handlePick(e){
 
 function focusHotspot(entry){
   const info = HOTSPOTS[entry.name];
-  setPanel({ key: entry.name, title: info.title, desc: info.desc });
+  setPanel({ key: entry.name, title: info.title, desc: info.desc, photo: info.photo });
 
   const box = entry.box;
   const center = box.getCenter(new THREE.Vector3());

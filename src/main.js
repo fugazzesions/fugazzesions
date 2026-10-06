@@ -42,15 +42,16 @@ const EDITIONS = [
 ];
 
 // zonas clickeables: deben coincidir con el nombre del nodo en el .glb
+// 'photo' es opcional: cuando está, el panel de la zona muestra esa foto real del lugar.
 const HOTSPOTS = {
-  entrada:          { title: 'Entrada',          desc: 'Por acá se arranca el recorrido — acceso principal al galpón.' },
-  pistaprincipal:   { title: 'Pista principal',  desc: 'El corazón del evento: los spots centrales, construidos desde cero para esta edición.' },
-  pistaclases:      { title: 'Pista de clases',  desc: 'Espacio de clases abiertas, para quienes se están iniciando en el patín.' },
-  sectorchill:       { title: 'Sector chill',     desc: 'Para bajar un cambio entre tanda y tanda.' },
-  sectorDJ:          { title: 'Sector DJ',        desc: 'De acá sale la música del cierre — el plus de la fiesta, después de un día de patín.' },
+  entrada:          { title: 'Entrada',          desc: 'Por acá se arranca el recorrido — acceso principal al galpón.', photo: '/assets/photos/zonas/entrada.jpg' },
+  pistaprincipal:   { title: 'Pista principal',  desc: 'El corazón del evento: los spots centrales, construidos desde cero para esta edición.', photo: '/assets/photos/zonas/pistaprincipal.jpg' },
+  pistaclases:      { title: 'Pista de clases',  desc: 'Espacio de clases abiertas, para quienes se están iniciando en el patín.', photo: '/assets/photos/zonas/pistaclases.jpg' },
+  sectorchill:       { title: 'Sector chill',     desc: 'Para bajar un cambio entre tanda y tanda.', photo: '/assets/photos/zonas/sectorchill.jpg' },
+  sectorDJ:          { title: 'Sector DJ',        desc: 'De acá sale la música del cierre — el plus de la fiesta, después de un día de patín.', photo: '/assets/photos/zonas/sectordj.jpg' },
   banos:             { title: 'Baños',            desc: 'Servicios del predio.' },
   fumadores:         { title: 'Zona fumadores',   desc: 'Sector habilitado para fumadores.' },
-  Barracomida:       { title: 'Barra de comida',  desc: 'Pizza y bebidas para seguir con energía — parte de "pizza, patín y punto".' },
+  Barracomida:       { title: 'Barra de comida',  desc: 'Pizza y bebidas para seguir con energía — parte de "pizza, patín y punto".', photo: '/assets/photos/zonas/barracomida.jpg' },
 };
 
 // fotos reales, todas juntas (sin separar por edición)

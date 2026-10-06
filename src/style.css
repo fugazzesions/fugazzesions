@@ -136,6 +136,7 @@
   .map-soon p{ color:#8A8064; max-width:340px; font-size:14px; }
 
   .map-panel{ margin-top:16px; background:#221D14; border:2px solid #6B6252; border-radius:var(--radius-m); padding:18px 20px; min-height:78px; display:flex; flex-direction:column; gap:6px; }
+  .map-panel .ph-photo{ width:calc(100% + 40px); margin:-18px -20px 4px; max-height:240px; object-fit:cover; border-radius:var(--radius-m) var(--radius-m) 0 0; display:block; }
   .map-panel .ph-eyebrow{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--red); }
   .map-panel .ph-title{ font-family:'Anton'; font-size:22px; color:var(--white); }
   .map-panel .ph-desc{ color:#CFC5AF; font-size:14px; margin:0; }
